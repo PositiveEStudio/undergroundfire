@@ -17,7 +17,6 @@ import xufly.groundfire.item.ItemRegistryHandler;
 
 import java.util.stream.Collectors;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(GroundFire.MODID)
 public class GroundFire
 {
@@ -43,7 +42,6 @@ public class GroundFire
 	//dispatch IMC to another mod
 	private void enqueueIMC(final InterModEnqueueEvent event)
 	{
-		// Some example code to
 		InterModComms.sendTo("groundfire", "helloworld", () ->
 		{
 			LOGGER.info("Hello world from the MDK");
