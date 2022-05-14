@@ -2,7 +2,8 @@ package xufly.groundfire.creative;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import xufly.groundfire.item.ItemRegistryHandler;
+import org.jetbrains.annotations.NotNull;
+import xufly.groundfire.item.ItemRegistry;
 
 public class GroundFireTab extends CreativeModeTab
 {
@@ -12,8 +13,8 @@ public class GroundFireTab extends CreativeModeTab
 	}
 
 	@Override
-	public ItemStack makeIcon()
+	public @NotNull ItemStack makeIcon()
 	{
-		return new ItemStack(ItemRegistryHandler.MOUSE.get());
+		return new ItemStack(ItemRegistry.mouse.get());
 	}
 }

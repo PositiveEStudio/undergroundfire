@@ -13,7 +13,9 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import xufly.groundfire.item.ItemRegistryHandler;
+import xufly.block.BlockRegistry;
+import xufly.groundfire.fluid.FluidRegistry;
+import xufly.groundfire.item.ItemRegistry;
 
 import java.util.stream.Collectors;
 
@@ -31,7 +33,9 @@ public class GroundFire
 
 		MinecraftForge.EVENT_BUS.register(this);
 
-		ItemRegistryHandler.ITEM_REGISTER.register(FMLJavaModLoadingContext.get().getModEventBus());
+		ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		FluidRegistry.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 
 	private void setup(final FMLCommonSetupEvent event)
