@@ -1,4 +1,6 @@
 {
   "item.groundfire.mouse": "mouse",
+  "block.groundfire.rich_coal_ore": "rich coal ore",
+  "block.groundfire.burning_rich_coal_ore": "burning rich coal ore",
   "itemGroup.groundfire_tab": "GroundFire"
 }

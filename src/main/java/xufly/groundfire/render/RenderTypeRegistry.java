@@ -1,4 +1,4 @@
-package xufly.render;
+package xufly.groundfire.render;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;

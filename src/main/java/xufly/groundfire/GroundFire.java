@@ -13,7 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import xufly.block.BlockRegistry;
+import xufly.groundfire.block.BlockRegistry;
 import xufly.groundfire.fluid.FluidRegistry;
 import xufly.groundfire.item.ItemRegistry;
 

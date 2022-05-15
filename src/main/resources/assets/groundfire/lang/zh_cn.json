@@ -1,4 +1,6 @@
 {
   "item.groundfire.mouse": "耗子",
+  "block.groundfire.rich_coal_ore": "富煤矿",
+  "block.groundfire.burning_rich_coal_ore": "燃烧的富煤矿",
   "itemGroup.groundfire_tab": "地火"
 }
