@@ -11,4 +11,5 @@ public class BlockRichCoalOre extends Block
 	{
 		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE));
 	}
+
 }
