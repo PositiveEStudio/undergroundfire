@@ -9,7 +9,6 @@ public class BlockRichCoalOre extends Block
 {
 	public BlockRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE));
+		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.1F, 3.1F));
 	}
-
 }
