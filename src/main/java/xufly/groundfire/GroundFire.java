@@ -6,18 +6,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import xufly.groundfire.block.BlockRegistry;
-import xufly.groundfire.fluid.FluidRegistry;
 import xufly.groundfire.item.ItemRegistry;
-
-import java.util.stream.Collectors;
 
 @Mod(GroundFire.MODID)
 public class GroundFire
@@ -28,35 +22,15 @@ public class GroundFire
 	public GroundFire()
 	{
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
 		MinecraftForge.EVENT_BUS.register(this);
 
 		ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		FluidRegistry.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 
 	private void setup(final FMLCommonSetupEvent event)
 	{
-		// some preinit code
-	}
-
-	//dispatch IMC to another mod
-	private void enqueueIMC(final InterModEnqueueEvent event)
-	{
-		InterModComms.sendTo("groundfire", "helloworld", () ->
-		{
-			LOGGER.info("Hello world from the MDK");
-			return "Hello world";
-		});
-	}
-
-	// receive and process InterModComms from other mods
-	private void processIMC(final InterModProcessEvent event)
-	{
-		LOGGER.info("Got IMC {}", event.getIMCStream().map(m -> m.messageSupplier().get()).collect(Collectors.toList()));
 	}
 
 	@SubscribeEvent
