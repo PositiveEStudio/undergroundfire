@@ -17,4 +17,6 @@ public class ItemRegistry
 
 	public static final RegistryObject<BlockItem> richCoalOre = ITEMS.register("rich_coal_ore", () -> new BlockItem(BlockRegistry.richCoalOre.get(), new Item.Properties().tab(GFCreativeTab.GF_TAB)));
 	public static final RegistryObject<BlockItem> burningRichCoalOre = ITEMS.register("burning_rich_coal_ore", () -> new BlockItem(BlockRegistry.burningCoalOer.get(), new Item.Properties().tab(GFCreativeTab.GF_TAB)));
+	public static final RegistryObject<BlockItem> gasTank = ITEMS.register("gas_tank", () -> new BlockItem(BlockRegistry.gasTank.get(), new Item.Properties().tab(GFCreativeTab.GF_TAB)));
+	public static final RegistryObject<BlockItem> test = ITEMS.register("gas_coal", () -> new BlockItem(BlockRegistry.gasCoal.get(), new Item.Properties().tab(GFCreativeTab.GF_TAB)));
 }

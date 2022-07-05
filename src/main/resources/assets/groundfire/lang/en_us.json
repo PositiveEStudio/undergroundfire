@@ -1,8 +1,8 @@
 {
   "item.groundfire.mouse": "mouse",
-  "item.groundfire.coal_gas_bucket": "coal gas bucket",
   "block.groundfire.rich_coal_ore": "rich coal ore",
   "block.groundfire.burning_rich_coal_ore": "burning rich coal ore",
-  "fluid.groundfire.coal_gas": "coal gas",
+  "block.groundfire.gas_tank": "gas tank",
+  "block.groundfire.gas_coal": "gas coal",
   "itemGroup.groundfire_tab": "GroundFire"
 }

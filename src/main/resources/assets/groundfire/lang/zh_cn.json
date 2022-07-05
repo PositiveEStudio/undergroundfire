@@ -1,8 +1,8 @@
 {
   "item.groundfire.mouse": "耗子",
-  "item.groundfire.coal_gas_bucket": "煤气桶",
   "block.groundfire.rich_coal_ore": "富煤矿",
   "block.groundfire.burning_rich_coal_ore": "燃烧的富煤矿",
-  "fluid.groundfire.coal_gas": "煤气",
+  "block.groundfire.gas_tank": "煤气罐",
+  "block.groundfire.gas_coal": "气化煤",
   "itemGroup.groundfire_tab": "地火"
 }
