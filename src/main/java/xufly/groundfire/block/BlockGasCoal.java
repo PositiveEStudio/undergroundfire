@@ -1,25 +1,42 @@
 package xufly.groundfire.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockGasCoal extends Block
 {
-	VoxelShape shape = Block.box(0, 0, 0, 0, 0, 0);
-
 	public BlockGasCoal()
 	{
-		super(Properties.of(Material.AIR));
+		super(Properties.of(Material.AIR).noCollission().noDrops());
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_)
+	public RenderShape getRenderShape(BlockState p_48758_)
 	{
-		return shape;
+		return RenderShape.INVISIBLE;
+	}
+
+	@Override
+	public InteractionResult use(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, InteractionHand p_60507_, BlockHitResult p_60508_)
+	{
+		if (!p_60504_.isClientSide() && p_60506_.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
+		{
+			p_60504_.explode(null, p_60505_.getX(), p_60505_.getY(), p_60505_.getZ(), 3, Explosion.BlockInteraction.DESTROY);
+			return InteractionResult.SUCCESS;
+		}
+		else
+		{
+			return InteractionResult.FAIL;
+		}
 	}
 }
