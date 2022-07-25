@@ -1,51 +1,30 @@
 package xufly.groundfire.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
+import xufly.groundfire.block.entity.BlockEntityRegistry;
+import xufly.groundfire.block.entity.BlockEntityRichCoalOre;
 
-import java.util.Random;
-
-public class BlockRichCoalOre extends Block
+public class BlockRichCoalOre extends BaseEntityBlock
 {
-	static boolean flag = true;
-
 	public BlockRichCoalOre()
 	{
 		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.1F, 3.1F).requiresCorrectToolForDrops());
-	}
-
-	@Override
-	public void tick(BlockState p_60462_, ServerLevel p_60463_, BlockPos p_60464_, Random p_60465_)
-	{
-		if (checkAroundBlock(p_60463_, p_60464_))
-		{
-			System.out.println("yes");
-			p_60463_.setBlock(p_60464_, BlockRegistry.burningCoalOer.get().defaultBlockState(), 1);
-		}
-		else
-		{
-			if (flag)
-				System.out.println("fuck");
-			flag = false;
-		}
-	}
-
-	@Override
-	public boolean isRandomlyTicking(BlockState p_49921_)
-	{
-		return true;
 	}
 
 	@Override
@@ -53,7 +32,7 @@ public class BlockRichCoalOre extends Block
 	{
 		if (p_60506_.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
 		{
-			p_60504_.setBlock(p_60505_, BlockRegistry.burningCoalOer.get().defaultBlockState(), 1);
+			p_60504_.setBlock(p_60505_, BlockRegistry.burningCoalOre.get().defaultBlockState(), 1);
 			return InteractionResult.SUCCESS;
 		}
 		else
@@ -62,26 +41,23 @@ public class BlockRichCoalOre extends Block
 		}
 	}
 
-	private boolean checkAroundBlock(ServerLevel level, BlockPos pos)
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
 	{
-		/*int[][] dxyz = new int[][]{{0, 1, 0},};
-		for (int[] d : dxyz)
-		{
-			if (level.getBlockState(new BlockPos(pos.getX() + d[0], pos.getY() + d[1], pos.getZ() + d[2])).getBlock().equals(Blocks.FIRE))
-			{
-				System.out.println("fire!");
-				return true;
-			}
-		}*/
-		if (level.getBlockState(pos.above()).getBlock().equals(Blocks.FIRE))
-		{
-			System.out.println("true");
-			return true;
-		}
-		else
-		{
-			System.out.println("false");
-			return false;
-		}
+		return new BlockEntityRichCoalOre(pos, state);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type)
+	{
+		return !world.isClientSide && type.equals(BlockEntityRegistry.entityBlockRichCoalOre.get()) ? createTickerHelper(type, BlockEntityRegistry.entityBlockRichCoalOre.get(), BlockEntityRichCoalOre::tick) : null;
+	}
+
+	@Override
+	public RenderShape getRenderShape(BlockState p_49232_)
+	{
+		return RenderShape.MODEL;
 	}
 }

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import xufly.groundfire.block.BlockRegistry;
+import xufly.groundfire.block.entity.BlockEntityRegistry;
 import xufly.groundfire.item.ItemRegistry;
 
 @Mod(GroundFire.MODID)
@@ -27,6 +28,7 @@ public class GroundFire
 
 		ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		BlockEntityRegistry.BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 
 	private void setup(final FMLCommonSetupEvent event)

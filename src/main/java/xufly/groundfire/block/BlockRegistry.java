@@ -11,7 +11,7 @@ public class BlockRegistry
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, GroundFire.MODID);
 
 	public static final RegistryObject<Block> richCoalOre = BLOCKS.register("rich_coal_ore", BlockRichCoalOre::new);
-	public static final RegistryObject<Block> burningCoalOer = BLOCKS.register("burning_rich_coal_ore", BlockBurningRichCoalOre::new);
+	public static final RegistryObject<Block> burningCoalOre = BLOCKS.register("burning_rich_coal_ore", BlockBurningRichCoalOre::new);
 	public static final RegistryObject<Block> gasTank = BLOCKS.register("gas_tank", BlockGasTank::new);
 	public static final RegistryObject<Block> gasCoal = BLOCKS.register("gas_coal", BlockGasCoal::new);
 }
