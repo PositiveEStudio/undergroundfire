@@ -24,7 +24,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 {
 	public BlockRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.1F, 3.1F).requiresCorrectToolForDrops());
+		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops());
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 	{
 		if (p_60506_.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
 		{
-			p_60504_.setBlock(p_60505_, BlockRegistry.burningCoalOre.get().defaultBlockState(), 1);
+			p_60504_.setBlock(p_60505_, BlockRegistry.burningRichCoalOre.get().defaultBlockState(), 1);
 			return InteractionResult.SUCCESS;
 		}
 		else

@@ -8,7 +8,7 @@ import xufly.groundfire.block.BlockRegistry;
 
 public class CheckBlock
 {
-	private static final Block[] canFire = new Block[]{Blocks.FIRE, Blocks.LAVA, Blocks.SOUL_FIRE, Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE, BlockRegistry.burningCoalOre.get()};
+	private static final Block[] canFire = new Block[]{Blocks.FIRE, Blocks.LAVA, Blocks.SOUL_FIRE, Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE, BlockRegistry.burningRichCoalOre.get()};
 
 	public static boolean CheckAroundFireBlock(Level world, BlockPos pos)
 	{
@@ -32,20 +32,16 @@ public class CheckBlock
 
 	public static boolean CheckAroundWater(Level world, BlockPos pos)
 	{
-		int[][] dxys = new int[][]{{2, 2}, {1, 2}, {0, 2}, {2, 1}, {1, 1}, {1, 0}, {2, 0}, {1, 0}, {0, 0}};
-
-		for (int[] dxy : dxys)
+		for (int x = -2; x <= 2; x++)
 		{
-			for (int dz = -2; dz <= 2; dz++)
+			for (int y = -2; y <= 2; y++)
 			{
-				if (world.getBlockState(pos.north(dxy[0]).west(dxy[1])).getBlock().equals(Blocks.WATER))
-					return true;
-				if (world.getBlockState(pos.north(dxy[0]).east(dxy[1])).getBlock().equals(Blocks.WATER))
-					return true;
-				if (world.getBlockState(pos.south(dxy[0]).west(dxy[1])).getBlock().equals(Blocks.WATER))
-					return true;
-				if (world.getBlockState(pos.south(dxy[0]).east(dxy[1])).getBlock().equals(Blocks.WATER))
-					return true;
+				for (int z = -2; z <= 2; z++)
+				{
+					BlockPos checkPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
+					if (world.getBlockState(checkPos).getBlock().equals(Blocks.WATER))
+						return true;
+				}
 			}
 		}
 		return false;

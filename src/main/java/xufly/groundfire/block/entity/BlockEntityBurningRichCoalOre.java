@@ -2,25 +2,28 @@ package xufly.groundfire.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import xufly.groundfire.block.BlockRegistry;
+import xufly.groundfire.common.CheckBlock;
 
 import java.util.Random;
 
 public class BlockEntityBurningRichCoalOre extends BlockEntity
 {
-	private static int burnTime;
+	private int burnTime;
 
 	public BlockEntityBurningRichCoalOre(BlockPos pos, BlockState state)
 	{
 		super(BlockEntityRegistry.entityBlockBurningRichCoal.get(), pos, state);
 		Random random = new Random(pos.hashCode());
-		burnTime = random.nextInt(550, 650);
+		burnTime = random.nextInt(600, 900);
 	}
 
-	public static <T extends BlockEntity> void tick(Level world, BlockPos pos, BlockState State, T t)
+	public static <T extends BlockEntity> void tick(Level world, BlockPos pos, BlockState State, BlockEntityBurningRichCoalOre entity)
 	{
-		/*if (burnTime == 0)
+		if (entity.burnTime == 0)
 		{
 			if (CheckBlock.CheckAroundWater(world, pos))
 				world.setBlock(pos, BlockRegistry.gasCoal.get().defaultBlockState(), 2);
@@ -28,6 +31,6 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 				world.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
 		}
 		else
-			burnTime--;*/
+			entity.burnTime--;
 	}
 }

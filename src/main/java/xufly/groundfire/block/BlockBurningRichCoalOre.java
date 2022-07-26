@@ -19,7 +19,7 @@ public class BlockBurningRichCoalOre extends BaseEntityBlock
 {
 	public BlockBurningRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE));
+		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(2.8F, 2.8F).requiresCorrectToolForDrops());
 	}
 
 	@Nullable
@@ -33,7 +33,7 @@ public class BlockBurningRichCoalOre extends BaseEntityBlock
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type)
 	{
-		return !world.isClientSide && type.equals(BlockEntityRegistry.entityBlockBurningRichCoal.get()) ? BlockEntityBurningRichCoalOre::tick : null;
+		return !world.isClientSide && type.equals(BlockEntityRegistry.entityBlockBurningRichCoal.get()) ? createTickerHelper(type, BlockEntityRegistry.entityBlockBurningRichCoal.get(), BlockEntityBurningRichCoalOre::tick) : null;
 	}
 
 	@Override

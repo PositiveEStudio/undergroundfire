@@ -20,7 +20,7 @@ public class BlockEntityRichCoalOre extends BlockEntity
 	{
 		super(BlockEntityRegistry.entityBlockRichCoalOre.get(), pos, state);
 		Random random = new Random(pos.asLong());
-		fireTime = random.nextInt(100, 300);
+		fireTime = random.nextInt(100, 200);
 	}
 
 	public static <T extends BlockEntity> void tick(Level world, BlockPos pos, BlockState State, BlockEntityRichCoalOre entity)
@@ -28,7 +28,7 @@ public class BlockEntityRichCoalOre extends BlockEntity
 		if (!world.isClientSide() && CheckBlock.CheckAroundFireBlock(world, pos))
 		{
 			if (entity.fireTime == 0)
-				world.setBlock(pos, BlockRegistry.burningCoalOre.get().defaultBlockState(), 2);
+				world.setBlock(pos, BlockRegistry.burningRichCoalOre.get().defaultBlockState(), 2);
 			else
 				entity.fireTime--;
 		}
