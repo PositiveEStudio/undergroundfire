@@ -28,11 +28,11 @@ public class BlockRichCoalOre extends BaseEntityBlock
 	}
 
 	@Override
-	public InteractionResult use(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, InteractionHand p_60507_, BlockHitResult p_60508_)
+	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		if (p_60506_.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
+		if (player.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
 		{
-			p_60504_.setBlock(p_60505_, BlockRegistry.burningRichCoalOre.get().defaultBlockState(), 1);
+			world.setBlock(pos, BlockRegistry.burningRichCoalOre.get().defaultBlockState(), 1);
 			return InteractionResult.SUCCESS;
 		}
 		else
