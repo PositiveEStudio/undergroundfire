@@ -1,9 +1,6 @@
 package xufly.groundfire.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -17,11 +14,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import xufly.groundfire.block.entity.BlockEntityBurningRichCoalOre;
 import xufly.groundfire.block.entity.BlockEntityRegistry;
-import xufly.groundfire.item.ItemRegistry;
 
 public class BlockBurningRichCoalOre extends BaseEntityBlock
 {
@@ -47,7 +42,7 @@ public class BlockBurningRichCoalOre extends BaseEntityBlock
 		return state.getValue(BURN) && !world.isClientSide && type.equals(BlockEntityRegistry.entityBlockBurningRichCoal.get()) ? createTickerHelper(type, BlockEntityRegistry.entityBlockBurningRichCoal.get(), BlockEntityBurningRichCoalOre::tick) : null;
 	}
 
-	@Override
+	/*@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
 		if (!world.isClientSide && player.getMainHandItem().getItem().equals(ItemRegistry.debugStick.get()))
@@ -56,7 +51,7 @@ public class BlockBurningRichCoalOre extends BaseEntityBlock
 			return InteractionResult.SUCCESS;
 		}
 		return InteractionResult.PASS;
-	}
+	}*/
 
 	@Override
 	public RenderShape getRenderShape(BlockState p_49232_)
