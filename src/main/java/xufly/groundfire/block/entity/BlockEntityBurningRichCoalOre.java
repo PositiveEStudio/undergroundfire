@@ -16,7 +16,7 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 
 	public BlockEntityBurningRichCoalOre(BlockPos pos, BlockState state)
 	{
-		super(BlockEntityRegistry.entityBlockBurningRichCoal.get(), pos, state);
+		super(BlockEntityRegistry.blockEntityBurningRichCoal.get(), pos, state);
 		Random random = new Random(pos.hashCode());
 		burnTime = random.nextInt(600, 900);
 	}

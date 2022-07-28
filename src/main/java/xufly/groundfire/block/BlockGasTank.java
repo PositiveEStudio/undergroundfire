@@ -9,6 +9,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
@@ -24,13 +25,12 @@ public class BlockGasTank extends Block
 	static
 	{
 		VoxelShape block1 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-		//VoxelShape block2 = Block.box(4.0D, 16.0D, 3.0D, 10.0D, 10.0D, 10.0D);
 		shape = Shapes.or(block1);
 	}
 
 	public BlockGasTank()
 	{
-		super(Properties.of(Material.METAL));
+		super(Properties.of(Material.METAL).sound(SoundType.ANVIL));
 	}
 
 	@NotNull

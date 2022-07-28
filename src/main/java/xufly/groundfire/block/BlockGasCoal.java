@@ -9,6 +9,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,7 +22,7 @@ public class BlockGasCoal extends BaseEntityBlock
 {
 	public BlockGasCoal()
 	{
-		super(Properties.of(Material.AIR).noCollission().noDrops());
+		super(Properties.of(Material.AIR).sound(SoundType.STEM).noCollission().noDrops());
 	}
 
 	@Override

@@ -11,6 +11,7 @@ public class BlockEntityRegistry
 {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, GroundFire.MODID);
 
-	public static final RegistryObject<BlockEntityType<BlockEntityRichCoalOre>> entityBlockRichCoalOre = BLOCK_ENTITIES.register("rich_coal_ore", () -> BlockEntityType.Builder.of(BlockEntityRichCoalOre::new, BlockRegistry.richCoalOre.get()).build(null));
-	public static final RegistryObject<BlockEntityType<BlockEntityBurningRichCoalOre>> entityBlockBurningRichCoal = BLOCK_ENTITIES.register("burning_rich_coal_ore", () -> BlockEntityType.Builder.of(BlockEntityBurningRichCoalOre::new, BlockRegistry.burningRichCoalOre.get()).build(null));
+	public static final RegistryObject<BlockEntityType<BlockEntityRichCoalOre>> blockEntityRichCoalOre = BLOCK_ENTITIES.register("rich_coal_ore", () -> BlockEntityType.Builder.of(BlockEntityRichCoalOre::new, BlockRegistry.richCoalOre.get()).build(null));
+	public static final RegistryObject<BlockEntityType<BlockEntityBurningRichCoalOre>> blockEntityBurningRichCoal = BLOCK_ENTITIES.register("burning_rich_coal_ore", () -> BlockEntityType.Builder.of(BlockEntityBurningRichCoalOre::new, BlockRegistry.burningRichCoalOre.get()).build(null));
+	public static final RegistryObject<BlockEntityType<BlockEntityExtractor>> blockEntityExtractor = BLOCK_ENTITIES.register("extractor", () -> BlockEntityType.Builder.of(BlockEntityExtractor::new, BlockRegistry.extractor.get()).build(null));
 }

@@ -5,6 +5,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,7 +25,7 @@ public class BlockBurningRichCoalOre extends BaseEntityBlock
 
 	public BlockBurningRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(2.8F, 2.8F).requiresCorrectToolForDrops());
+		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(2.8F, 2.8F).requiresCorrectToolForDrops().sound(SoundType.STONE));
 		this.registerDefaultState(this.getStateDefinition().any().setValue(BURN, true));
 	}
 
@@ -39,19 +40,8 @@ public class BlockBurningRichCoalOre extends BaseEntityBlock
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type)
 	{
-		return state.getValue(BURN) && !world.isClientSide && type.equals(BlockEntityRegistry.entityBlockBurningRichCoal.get()) ? createTickerHelper(type, BlockEntityRegistry.entityBlockBurningRichCoal.get(), BlockEntityBurningRichCoalOre::tick) : null;
+		return state.getValue(BURN) && !world.isClientSide && type.equals(BlockEntityRegistry.blockEntityBurningRichCoal.get()) ? createTickerHelper(type, BlockEntityRegistry.blockEntityBurningRichCoal.get(), BlockEntityBurningRichCoalOre::tick) : null;
 	}
-
-	/*@Override
-	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
-	{
-		if (!world.isClientSide && player.getMainHandItem().getItem().equals(ItemRegistry.debugStick.get()))
-		{
-			world.setBlock(pos, state.setValue(BURN, !state.getValue(BURN)), 2);
-			return InteractionResult.SUCCESS;
-		}
-		return InteractionResult.PASS;
-	}*/
 
 	@Override
 	public RenderShape getRenderShape(BlockState p_49232_)
