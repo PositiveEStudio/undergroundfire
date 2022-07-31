@@ -33,7 +33,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 	{
 		if (player.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
 		{
-			world.setBlock(pos, BlockRegistry.burningRichCoalOre.get().defaultBlockState(), 1);
+			world.setBlock(pos, BlockRegistry.burningRichCoalOre.get().defaultBlockState(), 2);
 			return InteractionResult.SUCCESS;
 		}
 		else
@@ -57,7 +57,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState p_49232_)
+	public RenderShape getRenderShape(BlockState state)
 	{
 		return RenderShape.MODEL;
 	}

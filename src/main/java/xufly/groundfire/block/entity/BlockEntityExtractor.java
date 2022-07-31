@@ -12,10 +12,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import xufly.groundfire.menu.MenuExtractor;
+import xufly.groundfire.client.gui.menu.MenuExtractor;
 
 public class BlockEntityExtractor extends BlockEntity implements MenuProvider
 {
+	private int volume;
+
 	public BlockEntityExtractor(BlockPos pos, BlockState state)
 	{
 		super(BlockEntityRegistry.blockEntityExtractor.get(), pos, state);
@@ -25,6 +27,7 @@ public class BlockEntityExtractor extends BlockEntity implements MenuProvider
 	{
 	}
 
+	@NotNull
 	@Override
 	public Component getDisplayName()
 	{

@@ -1,4 +1,4 @@
-package xufly.groundfire.menu;
+package xufly.groundfire.client.gui.menu;
 
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -9,6 +9,6 @@ import xufly.groundfire.GroundFire;
 
 public class MenuRegistry
 {
-	public static final DeferredRegister<MenuType<?>> MENU_TYPE = DeferredRegister.create(ForgeRegistries.CONTAINERS, GroundFire.MODID);
-	public static final RegistryObject<MenuType<MenuExtractor>> menuExtractor = MENU_TYPE.register("extractor", () -> IForgeMenuType.create(MenuExtractor::new));
+	public static final DeferredRegister<MenuType<?>> MENU = DeferredRegister.create(ForgeRegistries.CONTAINERS, GroundFire.MODID);
+	public static final RegistryObject<MenuType<MenuExtractor>> menuExtractor = MENU.register("extractor", () -> IForgeMenuType.create(MenuExtractor::new));
 }
