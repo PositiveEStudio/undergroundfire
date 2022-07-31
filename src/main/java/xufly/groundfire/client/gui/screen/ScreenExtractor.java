@@ -18,7 +18,11 @@ public class ScreenExtractor extends AbstractContainerScreen<MenuExtractor>
 	public ScreenExtractor(MenuExtractor menu, Inventory playerInv, Component title)
 	{
 		super(menu, playerInv, title);
+		this.passEvents = false;
 		blockEntity = menu.getEntity();
+		imageWidth = 176;
+		imageHeight = 133;
+		this.inventoryLabelY = this.imageHeight - 118;
 	}
 
 	@Override
@@ -30,8 +34,9 @@ public class ScreenExtractor extends AbstractContainerScreen<MenuExtractor>
 	@Override
 	public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick)
 	{
+		this.renderBackground(pPoseStack);
 		super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-		RenderSystem.setShaderTexture(0, gui);
+		this.renderTooltip(pPoseStack, pMouseX, pMouseY);
 	}
 
 	@Override
@@ -39,6 +44,9 @@ public class ScreenExtractor extends AbstractContainerScreen<MenuExtractor>
 	{
 		renderBackground(pPoseStack);
 		RenderSystem.setShaderTexture(0, gui);
+		RenderSystem.disableDepthTest();
+		blit(pPoseStack, getGuiLeft(), getGuiTop(), 0, 0, 176, 193);
+		blit(pPoseStack, getGuiLeft() + 173, getGuiTop() + 8, 173, 8, 27, 102);
 	}
 
 	@Override

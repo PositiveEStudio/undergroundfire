@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xufly.groundfire.client.gui.menu.MenuExtractor;
@@ -17,6 +18,7 @@ import xufly.groundfire.client.gui.menu.MenuExtractor;
 public class BlockEntityExtractor extends BlockEntity implements MenuProvider
 {
 	private int volume;
+	private final ItemStackHandler tank = new ItemStackHandler(18);
 
 	public BlockEntityExtractor(BlockPos pos, BlockState state)
 	{
@@ -25,6 +27,7 @@ public class BlockEntityExtractor extends BlockEntity implements MenuProvider
 
 	public static <T extends BlockEntity> void tick(Level world, BlockPos pos, BlockState State, BlockEntityExtractor entity)
 	{
+
 	}
 
 	@NotNull
@@ -39,5 +42,10 @@ public class BlockEntityExtractor extends BlockEntity implements MenuProvider
 	public AbstractContainerMenu createMenu(int id, @NotNull Inventory playerInv, @NotNull Player player)
 	{
 		return new MenuExtractor(id, playerInv, getBlockPos());
+	}
+
+	public ItemStackHandler getTank()
+	{
+		return tank;
 	}
 }
