@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "undergroundfire:block/burning_rich_coal_ore"
+  }
+}

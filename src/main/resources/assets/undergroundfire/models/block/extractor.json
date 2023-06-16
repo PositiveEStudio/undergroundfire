@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "undergroundfire:block/extractor_end",
+    "side": "undergroundfire:block/extractor_side"
+  }
+}

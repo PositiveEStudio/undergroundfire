@@ -1,0 +1,8 @@
+{
+  "item.undergroundfire.mouse": "mouse",
+  "block.undergroundfire.rich_coal_ore": "rich coal ore",
+  "block.undergroundfire.burning_rich_coal_ore": "burning rich coal ore",
+  "block.undergroundfire.gas_tank": "gas tank",
+  "block.undergroundfire.gas_coal": "gas coal",
+  "itemGroup.undergroundfire_tab": "UndergroundFire"
+}

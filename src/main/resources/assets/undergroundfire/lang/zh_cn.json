@@ -1,0 +1,11 @@
+{
+  "item.undergroundfire.mouse": "耗子",
+  "block.undergroundfire.rich_coal_ore": "富煤矿",
+  "block.undergroundfire.burning_rich_coal_ore": "燃烧的富煤矿",
+  "block.undergroundfire.gas_tank": "煤气罐",
+  "block.undergroundfire.gas_coal": "气化煤",
+  "block.undergroundfire.extractor": "气化煤提取器",
+  "itemGroup.undergroundfire_tab": "地火",
+  "title.undergroundfire.extractor.main": "气化煤提取器",
+  "title.undergroundfire.test": "Test"
+}
