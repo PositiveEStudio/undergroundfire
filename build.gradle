@@ -1,33 +1,24 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
-}
-
 plugins {
     id 'eclipse'
     id 'maven-publish'
-}
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+    id 'net.minecraftforge.gradle' version '5.1.+'
 
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+}
 
 version = '1.0'
-group = 'xufly'
-archivesBaseName = 'groundfire'
+group = 'com.mcxufly.positivee.undergroundfire'
+archivesBaseName = 'undergroundfire'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'parchment', version: '2022.05.02-1.18.2'
-    //mappings channel: 'official', version: '1.18.2'
+
+    //mappings channel: 'official', version: '1.19.4'
+    mappings channel: 'parchment', version: '1.19.3-2023.03.12-1.19.4'
+
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
     runs {
         client {
@@ -35,10 +26,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'groundfire'
+            property 'forge.enabledGameTestNamespaces', 'undergroundfire'
 
             mods {
-                groundfire {
+                undergroundfire {
                     source sourceSets.main
                 }
             }
@@ -49,10 +40,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'groundfire'
+            property 'forge.enabledGameTestNamespaces', 'undergroundfire'
 
             mods {
-                groundfire {
+                undergroundfire {
                     source sourceSets.main
                 }
             }
@@ -63,10 +54,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'groundfire'
+            property 'forge.enabledGameTestNamespaces', 'undergroundfire'
 
             mods {
-                groundfire {
+                undergroundfire {
                     source sourceSets.main
                 }
             }
@@ -77,12 +68,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'groundfire', '--all',
-                    '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'undergroundfire', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                groundfire {
+                undergroundfire {
                     source sourceSets.main
                 }
             }
@@ -94,9 +83,14 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
+        // location of the maven that hosts JEI files before January 2023
+        name = "Progwml6's maven"
         url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
     }
     maven {
         // location of a maven mirror for JEI files, as a fallback
@@ -106,24 +100,27 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.1.0'
 
     // compile against the JEI API but do not include it at runtime
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174:api")
-    // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174")
+    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
+    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
+    // at runtime, use the full JEI jar for Forge
+    runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
 }
 
+// Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
-        attributes(["Specification-Title"     : "groundfire",
-                    "Specification-Vendor"    : "XuFlyMC",
-                    "Specification-Version"   : "1",
-
-                    "Implementation-Title"    : project.name,
-                    "Implementation-Version"  : project.jar.archiveVersion,
-                    "Implementation-Vendor"   : "XuFlyMC",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+        attributes([
+                "Specification-Title"     : "undergroundfire",
+                "Specification-Vendor"    : "undergroundfiresareus",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "undergroundfiresareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
     }
 }
 

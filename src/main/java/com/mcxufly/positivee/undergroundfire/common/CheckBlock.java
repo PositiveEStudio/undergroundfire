@@ -1,10 +1,10 @@
 package com.mcxufly.positivee.undergroundfire.common;
 
+import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
 
 public class CheckBlock
 {
