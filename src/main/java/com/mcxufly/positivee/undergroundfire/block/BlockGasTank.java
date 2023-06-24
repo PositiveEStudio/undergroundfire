@@ -5,7 +5,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -23,7 +22,7 @@ public class BlockGasTank extends Block
 
 	public BlockGasTank()
 	{
-		super(Properties.of(Material.METAL).sound(SoundType.ANVIL));
+		super(Properties.of().sound(SoundType.ANVIL));
 	}
 
 	@NotNull

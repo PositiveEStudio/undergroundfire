@@ -4,13 +4,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 
 public class BlockGasCoal extends Block
 {
 	public BlockGasCoal()
 	{
-		super(BlockBehaviour.Properties.of(Material.AIR).noCollission());
+		super(BlockBehaviour.Properties.of().noCollission());
 	}
 
 	@Override

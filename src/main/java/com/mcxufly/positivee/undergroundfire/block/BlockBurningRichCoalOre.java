@@ -7,8 +7,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 
 public class BlockBurningRichCoalOre extends Block
 {
@@ -16,7 +14,7 @@ public class BlockBurningRichCoalOre extends Block
 
 	public BlockBurningRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(2.8F, 2.8F).requiresCorrectToolForDrops().sound(SoundType.STONE));
+		super(BlockBehaviour.Properties.of().strength(2.8F, 2.8F).requiresCorrectToolForDrops().sound(SoundType.STONE));
 		this.registerDefaultState(this.getStateDefinition().any().setValue(BURN, true));
 	}
 

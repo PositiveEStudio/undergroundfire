@@ -1,6 +1,7 @@
 package com.mcxufly.positivee.undergroundfire;
 
 import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
+import com.mcxufly.positivee.undergroundfire.creative.CreativeTabRegistry;
 import com.mcxufly.positivee.undergroundfire.item.ItemRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,9 +20,8 @@ public class UndergroundFire
 
 	public UndergroundFire()
 	{
-
-
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
 		bus.addListener(this::setup);
 		bus.addListener(this::clientSetup);
 
@@ -29,6 +29,7 @@ public class UndergroundFire
 
 		ItemRegistry.ITEMS.register(bus);
 		BlockRegistry.BLOCKS.register(bus);
+		CreativeTabRegistry.CREATIVE_MODE_TAB.register(bus);
 	}
 
 	public void clientSetup(FMLClientSetupEvent event)

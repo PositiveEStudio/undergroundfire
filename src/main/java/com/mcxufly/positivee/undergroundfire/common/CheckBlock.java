@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Blocks;
 
 public class CheckBlock
 {
-	private static final Block[] canFire = new Block[]{Blocks.FIRE, Blocks.LAVA, Blocks.SOUL_FIRE, Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE, BlockRegistry.burningRichCoalOre.get()};
+	private static final Block[] canFire = new Block[]{Blocks.FIRE, Blocks.LAVA, Blocks.SOUL_FIRE, Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE, BlockRegistry.BURNING_RICH_COAL_ORE.get()};
 
 	public static boolean CheckAroundFireBlock(Level world, BlockPos pos)
 	{
