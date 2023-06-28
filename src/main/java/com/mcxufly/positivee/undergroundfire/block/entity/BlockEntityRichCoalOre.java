@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -44,6 +45,26 @@ public class BlockEntityRichCoalOre extends BlockEntity
 		super.load(pTag);
 		this.burnTime = pTag.getInt("BurnTime");
 		this.toBurnTime = pTag.getInt("ToBurnTime");
+	}
+
+	@NotNull
+	@Override
+	public CompoundTag getUpdateTag()
+	{
+		// Server side, read NBT when updating chunk data
+		CompoundTag nbt = super.getUpdateTag();
+		nbt.putInt("BurnTime", this.burnTime);
+		nbt.putInt("ToBurnTime", this.toBurnTime);
+		return nbt;
+	}
+
+	@Override
+	public void handleUpdateTag(CompoundTag tag)
+	{
+		// Client side, read NBT when updating chunk data
+		super.load(tag);
+		this.burnTime = tag.getInt("BurnTime");
+		this.toBurnTime = tag.getInt("ToBurnTime");
 	}
 
 	private void IntiToBurnTime()
