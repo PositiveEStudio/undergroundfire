@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockRichCoalOre extends BaseEntityBlock
@@ -30,6 +32,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 		super(Properties.copy(Blocks.COAL_ORE));
 	}
 
+	@NotNull
 	@Override
 	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit)
 	{
@@ -67,6 +70,14 @@ public class BlockRichCoalOre extends BaseEntityBlock
 		burn(level, pos);
 	}
 
+	@Override
+	public void wasExploded(Level pLevel, BlockPos pPos, Explosion pExplosion)
+	{
+		if (!pLevel.isClientSide)
+			pLevel.setBlock(pPos, Blocks.FIRE.defaultBlockState(), 2);
+	}
+
+	@NotNull
 	@Override
 	public RenderShape getRenderShape(BlockState state)
 	{
