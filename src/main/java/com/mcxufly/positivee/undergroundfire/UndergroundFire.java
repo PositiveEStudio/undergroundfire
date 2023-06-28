@@ -1,6 +1,7 @@
 package com.mcxufly.positivee.undergroundfire;
 
 import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
+import com.mcxufly.positivee.undergroundfire.block.entity.BlockEntityRegistry;
 import com.mcxufly.positivee.undergroundfire.creative.CreativeTabRegistry;
 import com.mcxufly.positivee.undergroundfire.item.ItemRegistry;
 import com.mojang.logging.LogUtils;
@@ -29,6 +30,7 @@ public class UndergroundFire
 
 		ItemRegistry.ITEMS.register(bus);
 		BlockRegistry.BLOCKS.register(bus);
+		BlockEntityRegistry.BLOCK_ENTITY_TYPE.register(bus);
 		CreativeTabRegistry.CREATIVE_MODE_TAB.register(bus);
 	}
 
