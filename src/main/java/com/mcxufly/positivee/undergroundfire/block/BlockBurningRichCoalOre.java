@@ -1,8 +1,8 @@
 package com.mcxufly.positivee.undergroundfire.block;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -14,7 +14,7 @@ public class BlockBurningRichCoalOre extends Block
 
 	public BlockBurningRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.of().strength(2.8F, 2.8F).requiresCorrectToolForDrops().sound(SoundType.STONE));
+		super(BlockBehaviour.Properties.copy(Blocks.COAL_ORE));
 		this.registerDefaultState(this.getStateDefinition().any().setValue(BURN, true));
 	}
 
@@ -25,8 +25,8 @@ public class BlockBurningRichCoalOre extends Block
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> blockStateBuilder)
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder)
 	{
-		blockStateBuilder.add(BURN);
+		pBuilder.add(BURN);
 	}
 }

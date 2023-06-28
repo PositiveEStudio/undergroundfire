@@ -29,7 +29,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 {
 	public BlockRichCoalOre()
 	{
-		super(Properties.copy(Blocks.COAL_ORE));
+		super(Properties.copy(Blocks.COAL_ORE).ignitedByLava());
 	}
 
 	@NotNull
@@ -67,7 +67,7 @@ public class BlockRichCoalOre extends BaseEntityBlock
 	@Override
 	public void onCaughtFire(BlockState state, Level level, BlockPos pos, @Nullable Direction direction, @Nullable LivingEntity igniter)
 	{
-		burn(level, pos);
+
 	}
 
 	@Override
