@@ -1,4 +1,4 @@
-package com.mcxufly.positivee.undergroundfire.item;
+package dev.positivee.undergroundfire.item;
 
 import net.minecraft.world.item.Item;
 

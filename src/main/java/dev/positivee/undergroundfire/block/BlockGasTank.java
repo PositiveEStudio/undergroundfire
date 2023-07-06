@@ -1,4 +1,4 @@
-package com.mcxufly.positivee.undergroundfire.block;
+package dev.positivee.undergroundfire.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

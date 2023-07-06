@@ -1,6 +1,6 @@
-package com.mcxufly.positivee.undergroundfire.common;
+package dev.positivee.undergroundfire.common;
 
-import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;

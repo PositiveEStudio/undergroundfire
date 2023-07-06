@@ -1,6 +1,6 @@
-package com.mcxufly.positivee.undergroundfire.block;
+package dev.positivee.undergroundfire.block;
 
-import com.mcxufly.positivee.undergroundfire.UndergroundFire;
+import dev.positivee.undergroundfire.UndergroundFire;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

@@ -1,7 +1,7 @@
-package com.mcxufly.positivee.undergroundfire.item;
+package dev.positivee.undergroundfire.item;
 
-import com.mcxufly.positivee.undergroundfire.UndergroundFire;
-import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.UndergroundFire;
+import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,7 +1,7 @@
-package com.mcxufly.positivee.undergroundfire.block.entity;
+package dev.positivee.undergroundfire.block.entity;
 
-import com.mcxufly.positivee.undergroundfire.UndergroundFire;
-import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.UndergroundFire;
+import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

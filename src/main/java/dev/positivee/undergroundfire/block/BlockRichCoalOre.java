@@ -1,7 +1,7 @@
-package com.mcxufly.positivee.undergroundfire.block;
+package dev.positivee.undergroundfire.block;
 
-import com.mcxufly.positivee.undergroundfire.block.entity.BlockEntityRegistry;
-import com.mcxufly.positivee.undergroundfire.block.entity.BlockEntityRichCoalOre;
+import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
+import dev.positivee.undergroundfire.block.entity.BlockEntityRichCoalOre;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.stats.Stats;

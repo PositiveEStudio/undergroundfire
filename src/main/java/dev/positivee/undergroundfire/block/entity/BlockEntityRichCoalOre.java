@@ -1,6 +1,6 @@
-package com.mcxufly.positivee.undergroundfire.block.entity;
+package dev.positivee.undergroundfire.block.entity;
 
-import com.mcxufly.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-import static com.mcxufly.positivee.undergroundfire.common.CheckBlock.CheckAroundFireBlock;
+import static dev.positivee.undergroundfire.common.CheckBlock.CheckAroundFireBlock;
 
 public class BlockEntityRichCoalOre extends BlockEntity
 {

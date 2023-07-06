@@ -1,7 +1,7 @@
-package com.mcxufly.positivee.undergroundfire.creative;
+package dev.positivee.undergroundfire.creative;
 
-import com.mcxufly.positivee.undergroundfire.UndergroundFire;
-import com.mcxufly.positivee.undergroundfire.item.ItemRegistry;
+import dev.positivee.undergroundfire.UndergroundFire;
+import dev.positivee.undergroundfire.item.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
