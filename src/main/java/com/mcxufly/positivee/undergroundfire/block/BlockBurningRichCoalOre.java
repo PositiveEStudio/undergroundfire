@@ -14,12 +14,12 @@ public class BlockBurningRichCoalOre extends Block
 
 	public BlockBurningRichCoalOre()
 	{
-		super(BlockBehaviour.Properties.copy(Blocks.COAL_ORE));
+		super(BlockBehaviour.Properties.copy(Blocks.COAL_ORE).ignitedByLava());
 		this.registerDefaultState(this.getStateDefinition().any().setValue(BURN, true));
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState p_49232_)
+	public RenderShape getRenderShape(BlockState pState)
 	{
 		return RenderShape.MODEL;
 	}
