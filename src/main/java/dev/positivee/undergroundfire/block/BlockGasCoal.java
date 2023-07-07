@@ -1,15 +1,32 @@
 package dev.positivee.undergroundfire.block;
 
+import dev.positivee.undergroundfire.block.entity.BlockEntityGasCoal;
+import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class BlockGasCoal extends Block
+public class BlockGasCoal extends BaseEntityBlock
 {
+	public static final IntegerProperty CONCENTRATION = IntegerProperty.create("concentration", 1, 10000);
+
 	public BlockGasCoal()
 	{
-		super(BlockBehaviour.Properties.of().noCollission());
+		super(BlockBehaviour.Properties.of().replaceable().noCollission().noLootTable().air());
 	}
 
 	@Override
@@ -18,17 +35,29 @@ public class BlockGasCoal extends Block
 		return RenderShape.INVISIBLE;
 	}
 
-	/*@Override
-	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit)
+	@Override
+	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
 	{
-		if (!pLevel.isClientSide() && pPlayer.getMainHandItem().getItem().equals(Items.FLINT_AND_STEEL))
-		{
-			pLevel.explode(null, pPos.getX(), pPos.getY(), pPos.getZ(), 3, Explosion.BlockInteraction.DESTROY);
-			return InteractionResult.SUCCESS;
-		}
-		else
-		{
-			return InteractionResult.FAIL;
-		}
-	}*/
+		return Shapes.empty();
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder)
+	{
+		pBuilder.add(CONCENTRATION);
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState)
+	{
+		return new BlockEntityGasCoal(pPos, pState);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType)
+	{
+		return pLevel.isClientSide ? null : createTickerHelper(pBlockEntityType, BlockEntityRegistry.GAS_COAL.get(), BlockEntityGasCoal::tick);
+	}
 }
