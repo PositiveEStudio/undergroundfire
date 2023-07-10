@@ -13,4 +13,5 @@ public class BlockRegistry
 	public static final RegistryObject<Block> RICH_COAL_ORE = BLOCKS.register("rich_coal_ore", BlockRichCoalOre::new);
 	public static final RegistryObject<Block> BURNING_RICH_COAL_ORE = BLOCKS.register("burning_rich_coal_ore", BlockBurningRichCoalOre::new);
 	public static final RegistryObject<Block> GAS_TANK = BLOCKS.register("gas_tank", BlockGasTank::new);
+	public static final RegistryObject<Block> GAS_COAL = BLOCKS.register("gas_coal", BlockGasCoal::new);
 }

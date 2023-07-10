@@ -1,16 +1,14 @@
 package dev.positivee.undergroundfire.block.entity;
 
 import dev.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.common.CheckBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Random;
-
-import static dev.positivee.undergroundfire.common.CheckBlock.CheckAroundFireBlock;
 
 public class BlockEntityRichCoalOre extends BlockEntity
 {
@@ -25,7 +23,7 @@ public class BlockEntityRichCoalOre extends BlockEntity
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityRichCoalOre blockEntity)
 	{
-		if (CheckAroundFireBlock(level, pos))
+		if (CheckBlock.RichCoalOreFuns.CheckAroundFireBlock(level, pos))
 			blockEntity.burnTime++;
 		if (blockEntity.getBurnTime() > blockEntity.getToBurnTime() && !level.isClientSide())
 			level.setBlock(pos, BlockRegistry.BURNING_RICH_COAL_ORE.get().defaultBlockState(), 2);
