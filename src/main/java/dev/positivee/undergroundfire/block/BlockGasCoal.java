@@ -35,11 +35,11 @@ public class BlockGasCoal extends BaseEntityBlock
 		pBuilder.add(CONCENTRATION);
 	}
 
-	@Override
+	/*@Override
 	public RenderShape getRenderShape(BlockState pState)
 	{
 		return RenderShape.INVISIBLE;
-	}
+	}*/
 
 	/*@Override
 	public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
