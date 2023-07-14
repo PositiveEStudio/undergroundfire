@@ -1,7 +1,5 @@
 package dev.positivee.undergroundfire.block.entity;
 
-import com.mojang.logging.LogUtils;
-import dev.positivee.undergroundfire.UndergroundFire;
 import dev.positivee.undergroundfire.block.BlockGasCoal;
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
@@ -12,7 +10,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Random;
