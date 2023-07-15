@@ -3,11 +3,13 @@ package dev.positivee.undergroundfire.block.entity;
 import dev.positivee.undergroundfire.block.BlockGasCoal;
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -92,6 +94,38 @@ public class BlockEntityGasCoal extends BlockEntity
 				}
 			}
 		}
+	}
+
+	@Override
+	protected void saveAdditional(CompoundTag pTag)
+	{
+		super.saveAdditional(pTag);
+		pTag.putBoolean("Delay", this.delay);
+	}
+
+	@Override
+	public void load(CompoundTag pTag)
+	{
+		super.load(pTag);
+		this.delay = pTag.getBoolean("Delay");
+	}
+
+	@NotNull
+	@Override
+	public CompoundTag getUpdateTag()
+	{
+		// Server side, read NBT when updating chunk data
+		CompoundTag nbt = super.getUpdateTag();
+		nbt.putBoolean("Delay", this.delay);
+		return nbt;
+	}
+
+	@Override
+	public void handleUpdateTag(CompoundTag tag)
+	{
+		// Client side, read NBT when updating chunk data
+		super.load(tag);
+		this.delay = tag.getBoolean("Delay");
 	}
 
 	public void isDelay()
