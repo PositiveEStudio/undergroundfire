@@ -22,7 +22,7 @@ public class BlockEntityGasCoal extends BlockEntity
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityGasCoal blockEntity)
-	{//TODO:继续改写 tick 方法直至有正常的扩散效果
+	{
 		ArrayList<BlockPos> targetPos = new ArrayList<>();
 		int airCount = 0;
 		int concentration = blockEntity.getBlockState().getValue(BlockGasCoal.CONCENTRATION);
