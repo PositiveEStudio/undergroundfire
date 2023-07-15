@@ -27,6 +27,7 @@ public class BlockGasCoal extends BaseEntityBlock
 	public BlockGasCoal()
 	{
 		super(Properties.copy(Blocks.AIR));
+		this.registerDefaultState(this.getStateDefinition().any().setValue(CONCENTRATION, 0));
 	}
 
 	@Override
