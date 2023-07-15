@@ -19,7 +19,7 @@ public class BlockEntityRichCoalOre extends BlockEntity
 	public BlockEntityRichCoalOre(BlockPos pos, BlockState state)
 	{
 		super(BlockEntityRegistry.RICH_COAL_ORE.get(), pos, state);
-		this.IntiToBurnTime();
+		this.InitToBurnTime();
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityRichCoalOre blockEntity)
@@ -66,7 +66,7 @@ public class BlockEntityRichCoalOre extends BlockEntity
 		this.toBurnTime = tag.getInt("ToBurnTime");
 	}
 
-	private void IntiToBurnTime()
+	private void InitToBurnTime()
 	{
 		Random random = new Random(this.getBlockPos().asLong() + this.getBlockState().getSeed(this.getBlockPos()));
 		this.toBurnTime = random.nextInt(90, 150);
