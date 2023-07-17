@@ -27,13 +27,13 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityBurningRichCoalOre blockEntity)
 	{
-		blockEntity.DecreaseDelay();
-
 		int outputs = blockEntity.getBlockState().getValue(BlockBurningRichCoalOre.OUTPUTS);
 		Boolean canBurnOut = blockEntity.getBlockState().getValue(BlockBurningRichCoalOre.CAN_BURN_OUT);
 
 		if (!canBurnOut)
 			return;
+
+		blockEntity.DecreaseDelay();
 
 		if (outputs != 0 && blockEntity.getDelay() == 0)
 		{
