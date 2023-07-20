@@ -1,6 +1,7 @@
 package dev.positivee.undergroundfire.client.renderer;
 
 import dev.positivee.undergroundfire.UndergroundFire;
+import dev.positivee.undergroundfire.client.model.ModelMouse;
 import dev.positivee.undergroundfire.client.renderer.entity.RendererMouse;
 import dev.positivee.undergroundfire.entity.EntityRegistry;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,5 +16,11 @@ public class RendererRegistry
 	public static void renderRegistry(EntityRenderersEvent.RegisterRenderers event)
 	{
 		event.registerEntityRenderer(EntityRegistry.MOUSE.get(), RendererMouse::new);
+	}
+
+	@SubscribeEvent
+	public static void layerDefinitionsRegistry(EntityRenderersEvent.RegisterLayerDefinitions event)
+	{
+		event.registerLayerDefinition(ModelMouse.LAYER_LOCATION, ModelMouse::createBodyLayer);
 	}
 }
