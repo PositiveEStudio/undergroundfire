@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockGasCoal extends BaseEntityBlock
 {
-	public static final IntegerProperty CONCENTRATION = IntegerProperty.create("concentration", 0, 1000);
+	public static final IntegerProperty CONCENTRATION = IntegerProperty.create("concentration", 0, 100);
 
 	public BlockGasCoal()
 	{
