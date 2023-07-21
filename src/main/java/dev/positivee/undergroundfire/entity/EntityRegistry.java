@@ -14,7 +14,7 @@ public class EntityRegistry
 
 	public static final RegistryObject<EntityType<EntityMouse>> MOUSE = ENTITY_TYPE.register("mouse",
 			() -> EntityType.Builder.of(EntityMouse::new, MobCategory.MISC)
-					.sized(0.25F, 0.25F)
+					.sized(0.375F, 1.0F)
 					.clientTrackingRange(16).updateInterval(10)
 					.build(new ResourceLocation(UndergroundFire.MODID, "mouse").toString()));
 }

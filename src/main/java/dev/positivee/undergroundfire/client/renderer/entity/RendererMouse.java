@@ -13,7 +13,7 @@ public class RendererMouse extends EntityRenderer<EntityMouse>
 	public RendererMouse(EntityRendererProvider.Context pContext)
 	{
 		super(pContext);
-		this.shadowRadius = 0.5F;
+		this.shadowRadius = 0.2F;
 	}
 
 	@Override
