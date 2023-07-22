@@ -48,7 +48,6 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 					for (int k = -1; k <= 1; k++)
 					{
 						if (i == 0 && j == 0 && k == 0) continue;
-
 						BlockPos newPos = new BlockPos(pos.getX() + i, pos.getY() + j, pos.getZ() + k);
 						Block block = level.getBlockState(newPos).getBlock();
 						if (block.equals(Blocks.AIR) || block.equals(BlockRegistry.GAS_COAL.get()))
@@ -59,13 +58,14 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 
 			if (!targetPos.isEmpty())
 			{
-				Random random = new Random(pos.asLong() + state.getSeed(pos));
+//				Random random = new Random(pos.asLong() + state.getSeed(pos));
+
 				int index;
 
 				if (targetPos.size() == 1)
 					index = 0;
 				else
-					index = random.nextInt(0, targetPos.size() - 1);
+					index = level.random.nextInt(0, targetPos.size() - 1);
 
 				BlockState targetState = level.getBlockState(targetPos.get(index));
 				Block targetBlock = targetState.getBlock();
@@ -80,7 +80,9 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 
 					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()))
 					{
-						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, targetState.getValue(BlockGasCoal.CONCENTRATION) + 1), 2);
+						int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
+
+						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, (targetConcentration <= 99 ? (targetConcentration + 1) : 100)), 2);
 						level.getBlockEntity(targetPos.get(index), BlockEntityRegistry.GAS_COAL.get()).get().isDelay();
 						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockBurningRichCoalOre.OUTPUTS, outputs - 1), 2);
 					}

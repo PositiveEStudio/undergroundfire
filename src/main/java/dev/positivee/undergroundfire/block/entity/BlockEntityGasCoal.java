@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class BlockEntityGasCoal extends BlockEntity
 {
@@ -29,9 +28,12 @@ public class BlockEntityGasCoal extends BlockEntity
 		int airCount = 0;
 		int concentration = blockEntity.getBlockState().getValue(BlockGasCoal.CONCENTRATION);
 
+		if (concentration == 0)
+			level.removeBlock(pos, false);
+
 		if (blockEntity.delay)
 		{
-			blockEntity.delay = false;
+			blockEntity.notDelay();
 			return;
 		}
 
@@ -60,36 +62,40 @@ public class BlockEntityGasCoal extends BlockEntity
 
 		if (!targetPos.isEmpty())
 		{
-			Random random = new Random(pos.asLong() + state.getSeed(pos));
+//			Random random = new Random(pos.asLong() + state.getSeed(pos));
 			int index;
 
 			if (targetPos.size() == 1)
 				index = 0;
 			else
-				index = random.nextInt(0, targetPos.size() - 1);
+				index = level.random.nextInt(0, targetPos.size() - 1);
 
 			BlockState targetState = level.getBlockState(targetPos.get(index));
 			Block targetBlock = targetState.getBlock();
 
 			if (!level.isClientSide)
 			{
-				if (airCount >= 20 && concentration <= 1)
+				if (airCount >= 20 && concentration < airCount * 0.8F)
 				{
 					level.removeBlock(pos, false);
 				}
 				else
 				{
-					if (targetBlock.equals(Blocks.AIR) && concentration > airCount * 0.8)
+					if (targetBlock.equals(Blocks.AIR) && concentration > airCount * 0.8F)
 					{
 						level.setBlock(targetPos.get(index), BlockRegistry.GAS_COAL.get().defaultBlockState().setValue(BlockGasCoal.CONCENTRATION, 1), 2);
 						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, concentration - 1), 2);
 					}
 
-					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && concentration - targetState.getValue(BlockGasCoal.CONCENTRATION) > 1)
+
+//					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && concentration - targetState.getValue(BlockGasCoal.CONCENTRATION) > 1)
+					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && concentration > targetState.getValue(BlockGasCoal.CONCENTRATION))
 					{
-						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, targetState.getValue(BlockGasCoal.CONCENTRATION) + 1), 2);
+						int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
+
+						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, (targetConcentration <= 99 ? (targetConcentration + 1) : 100)), 2);
 						level.getBlockEntity(targetPos.get(index), BlockEntityRegistry.GAS_COAL.get()).get().isDelay();
-						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, concentration - 1), 2);
+						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, (concentration >= 1) ? (concentration - 1) : 0), 2);
 					}
 				}
 			}
@@ -131,5 +137,10 @@ public class BlockEntityGasCoal extends BlockEntity
 	public void isDelay()
 	{
 		this.delay = true;
+	}
+
+	public void notDelay()
+	{
+		this.delay = false;
 	}
 }
