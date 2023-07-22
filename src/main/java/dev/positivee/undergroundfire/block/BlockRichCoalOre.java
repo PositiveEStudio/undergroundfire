@@ -26,8 +26,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class BlockRichCoalOre extends BaseEntityBlock
 {
 	public BlockRichCoalOre()
@@ -71,17 +69,19 @@ public class BlockRichCoalOre extends BaseEntityBlock
 	public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid)
 	{
 		ItemStack itemStack = player.getMainHandItem();
-		Random random = new Random(pos.asLong() + state.getSeed(pos));
-		if (itemStack.is(Items.IRON_PICKAXE) && random.nextInt(1, 500) == 250 && !level.isClientSide)
+
+		if (itemStack.is(Items.IRON_PICKAXE) && level.random.nextInt(1, 500) == 250 && !level.isClientSide)
 		{
 			level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 1.5F, Level.ExplosionInteraction.BLOCK);
 			return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
 		}
-		if (itemStack.is(Items.IRON_PICKAXE) && random.nextInt(1, 50) == 25 && !level.isClientSide)
+
+		if (itemStack.is(Items.IRON_PICKAXE) && level.random.nextInt(1, 50) == 25 && !level.isClientSide)
 		{
 			level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 2);
 			return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
 		}
+
 		return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
 	}
 
