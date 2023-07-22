@@ -64,18 +64,18 @@ public class EntityMouse extends Entity
 	private static Vector3f getParticleColor(int targetConc)
 	{
 		int red, green;
+		String color_s;
 		if (((double) targetConc / 50.0D) < 1.0D)
 		{
-			red = (int) (0xff * ((double) targetConc / 50.0D));
-			green = 0xff - red;
+			red = (int) (255 * ((double) targetConc / 50.0D));
+			green = 255 - red;
+			color_s = Integer.toHexString(red) + Integer.toHexString(green) + "00";
 		}
 		else
 		{
-			red = 0xff;
-			green = 0;
+			color_s = "ff0000";
 		}
 
-		String color_s = Integer.toHexString(red) + Integer.toHexString(green) + "00";
 		int color = Integer.valueOf(color_s, 16);
 		return Vec3.fromRGB24(color).toVector3f();
 	}
