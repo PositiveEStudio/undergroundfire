@@ -78,11 +78,11 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockBurningRichCoalOre.OUTPUTS, outputs - 1), 2);
 					}
 
-					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()))
+					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && targetState.getValue(BlockGasCoal.CONCENTRATION) <= 99)
 					{
 						int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
 
-						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, (targetConcentration <= 99 ? (targetConcentration + 1) : 100)), 2);
+						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, targetConcentration + 1), 2);
 						level.getBlockEntity(targetPos.get(index), BlockEntityRegistry.GAS_COAL.get()).get().isDelay();
 						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockBurningRichCoalOre.OUTPUTS, outputs - 1), 2);
 					}
