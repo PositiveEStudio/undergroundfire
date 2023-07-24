@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
 import dev.positivee.undergroundfire.creative.CreativeTabRegistry;
-import dev.positivee.undergroundfire.data.DataGen;
+import dev.positivee.undergroundfire.datagen.DataGen;
 import dev.positivee.undergroundfire.entity.EntityRegistry;
 import dev.positivee.undergroundfire.item.ItemRegistry;
 import net.minecraftforge.common.MinecraftForge;

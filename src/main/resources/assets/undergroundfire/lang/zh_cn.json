@@ -1,7 +1,7 @@
 {
   "block.undergroundfire.burning_rich_coal_ore": "燃烧的富煤矿",
   "block.undergroundfire.gas_coal": "气化煤",
-  "block.undergroundfire.gas_coal_exacter": "气化煤提取器",
+  "block.undergroundfire.gas_coal_extractor": "气化煤提取器",
   "block.undergroundfire.gas_tank": "煤气罐",
   "block.undergroundfire.rich_coal_ore": "富煤矿",
   "entity.undergroundfire.mouse": "耗子",

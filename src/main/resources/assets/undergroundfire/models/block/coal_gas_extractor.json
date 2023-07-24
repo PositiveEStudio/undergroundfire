@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "undergroundfire:block/test/down",
+    "east": "undergroundfire:block/test/east",
+    "north": "undergroundfire:block/test/north",
+    "south": "undergroundfire:block/test/south",
+    "up": "undergroundfire:block/test/up",
+    "west": "undergroundfire:block/test/west"
+  }
+}

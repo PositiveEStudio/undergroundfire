@@ -24,7 +24,7 @@ public class CreativeTabRegistry
 				output.accept(ItemRegistry.RICH_COAL_ORE.get());
 				output.accept(ItemRegistry.BURNING_RICH_COAL_ORE.get());
 				output.accept(ItemRegistry.GAS_TANK.get());
-				output.accept(ItemRegistry.GAS_COAL_EXACTER.get());
+				output.accept(ItemRegistry.GAS_COAL_EXTRACTOR.get());
 			}).build());
 
 }

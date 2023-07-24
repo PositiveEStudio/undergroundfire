@@ -1,4 +1,4 @@
-package dev.positivee.undergroundfire.data.lang;
+package dev.positivee.undergroundfire.datagen.lang;
 
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import dev.positivee.undergroundfire.entity.EntityRegistry;
@@ -24,7 +24,7 @@ public class DataLangProvENUS extends LanguageProvider
 		this.add(BlockRegistry.BURNING_RICH_COAL_ORE.get(), "Burning Rich Coal Ore");
 		this.add(BlockRegistry.GAS_COAL.get(), "Gas Coal");
 		this.add(BlockRegistry.GAS_TANK.get(), "Gas Tank");
-		this.add(BlockRegistry.GAS_COAL_EXACTER.get(),"Gas Coal Exacter");
+		this.add(BlockRegistry.GAS_COAL_EXTRACTOR.get(),"Gas Coal Exacter");
 
 		this.add(EntityRegistry.MOUSE.get(), "Mouse");
 	}

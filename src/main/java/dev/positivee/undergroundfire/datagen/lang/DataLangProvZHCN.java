@@ -1,4 +1,4 @@
-package dev.positivee.undergroundfire.data.lang;
+package dev.positivee.undergroundfire.datagen.lang;
 
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import dev.positivee.undergroundfire.entity.EntityRegistry;
@@ -24,7 +24,7 @@ public class DataLangProvZHCN extends LanguageProvider
 		this.add(BlockRegistry.BURNING_RICH_COAL_ORE.get(), "燃烧的富煤矿");
 		this.add(BlockRegistry.GAS_COAL.get(), "气化煤");
 		this.add(BlockRegistry.GAS_TANK.get(), "煤气罐");
-		this.add(BlockRegistry.GAS_COAL_EXACTER.get(),"气化煤提取器");
+		this.add(BlockRegistry.GAS_COAL_EXTRACTOR.get(),"气化煤提取器");
 
 		this.add(EntityRegistry.MOUSE.get(), "耗子");
 	}

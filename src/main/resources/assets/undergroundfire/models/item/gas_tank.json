@@ -1,3 +1,6 @@
 {
-  "parent": "undergroundfire:block/gas_tank"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "undergroundfire:item/gas_tank"
+  }
 }
