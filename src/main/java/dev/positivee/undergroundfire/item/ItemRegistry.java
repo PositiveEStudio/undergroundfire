@@ -17,4 +17,5 @@ public class ItemRegistry
 	public static final RegistryObject<BlockItem> RICH_COAL_ORE = ITEMS.register("rich_coal_ore", () -> new BlockItem(BlockRegistry.RICH_COAL_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> BURNING_RICH_COAL_ORE = ITEMS.register("burning_rich_coal_ore", () -> new BlockItem(BlockRegistry.BURNING_RICH_COAL_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<BlockItem> GAS_TANK = ITEMS.register("gas_tank", () -> new BlockItem(BlockRegistry.GAS_TANK.get(), new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<BlockItem> GAS_COAL_EXACTER = ITEMS.register("gas_coal_exacter", () -> new BlockItem(BlockRegistry.GAS_COAL_EXACTER.get(), new Item.Properties()));
 }
