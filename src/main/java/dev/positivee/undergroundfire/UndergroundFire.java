@@ -29,6 +29,7 @@ public class UndergroundFire
 		BlockEntityRegistry.BLOCK_ENTITY_TYPE.register(bus);
 		EntityRegistry.ENTITY_TYPE.register(bus);
 		CreativeTabRegistry.CREATIVE_MODE_TAB.register(bus);
+
 		bus.addListener(DataGen::gatherData);
 	}
 }
