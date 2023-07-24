@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
 import dev.positivee.undergroundfire.creative.CreativeTabRegistry;
+import dev.positivee.undergroundfire.data.DataGen;
 import dev.positivee.undergroundfire.entity.EntityRegistry;
 import dev.positivee.undergroundfire.item.ItemRegistry;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,7 +17,7 @@ import org.slf4j.Logger;
 public class UndergroundFire
 {
 	public static final String MODID = "undergroundfire";
-	private static final Logger LOGGER =LogUtils.getLogger();
+	private static final Logger LOGGER = LogUtils.getLogger();
 	public static final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 	public UndergroundFire()
@@ -28,5 +29,6 @@ public class UndergroundFire
 		BlockEntityRegistry.BLOCK_ENTITY_TYPE.register(bus);
 		EntityRegistry.ENTITY_TYPE.register(bus);
 		CreativeTabRegistry.CREATIVE_MODE_TAB.register(bus);
+		bus.addListener(DataGen::gatherData);
 	}
 }
