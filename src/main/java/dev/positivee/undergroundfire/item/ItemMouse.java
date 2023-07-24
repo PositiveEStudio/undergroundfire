@@ -48,7 +48,7 @@ public class ItemMouse extends Item
 				blockPos1 = blockpos.relative(direction);
 			}
 
-			if (EntityRegistry.MOUSE.get().spawn((ServerLevel) level, itemstack, pContext.getPlayer(), blockPos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockPos1) && direction == Direction.UP) != null)
+			if (EntityRegistry.MOUSE.get().spawn((ServerLevel) level, itemstack, pContext.getPlayer(), blockPos1, MobSpawnType.TRIGGERED, true, !Objects.equals(blockpos, blockPos1) && direction == Direction.UP) != null)
 			{
 				itemstack.shrink(1);
 				level.gameEvent(pContext.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);

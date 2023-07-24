@@ -1,19 +1,19 @@
 package dev.positivee.undergroundfire.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.positivee.undergroundfire.client.model.ModelMouse;
 import dev.positivee.undergroundfire.entity.EntityMouse;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class RendererMouse extends EntityRenderer<EntityMouse>
+public class RendererMouse extends LivingEntityRenderer<EntityMouse, ModelMouse<EntityMouse>>
 {
 
 	public RendererMouse(EntityRendererProvider.Context pContext)
 	{
-		super(pContext);
-		this.shadowRadius = 0.2F;
+		super(pContext, new ModelMouse(pContext.bakeLayer(ModelMouse.LAYER_LOCATION)),0.2F);
 	}
 
 	@Override
