@@ -1,6 +1,7 @@
 package dev.positivee.undergroundfire.block;
 
-import dev.positivee.undergroundfire.block.entity.BlockEntityGasCoalExacter;
+import dev.positivee.undergroundfire.block.entity.BlockEntityGasCoalExtractor;
+import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -14,9 +15,9 @@ import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockGasCoalExacter extends BaseEntityBlock
+public class BlockGasCoalExtractor extends BaseEntityBlock
 {
-	protected BlockGasCoalExacter()
+	protected BlockGasCoalExtractor()
 	{
 		super(Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	}
@@ -25,14 +26,14 @@ public class BlockGasCoalExacter extends BaseEntityBlock
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState)
 	{
-		return new BlockEntityGasCoalExacter(pPos, pState);
+		return new BlockEntityGasCoalExtractor(pPos, pState);
 	}
 
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType)
 	{
-		return super.getTicker(pLevel, pState, pBlockEntityType);
+		return pLevel.isClientSide ? null:createTickerHelper(pBlockEntityType, BlockEntityRegistry.GAS_COAL_EXTRACTOR.get(), BlockEntityGasCoalExtractor::tick);
 	}
 
 	@NotNull
