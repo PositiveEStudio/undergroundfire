@@ -4,19 +4,18 @@ import dev.positivee.undergroundfire.block.BlockGasCoal;
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-public class EntityMouse extends LivingEntity
+public class EntityMouse extends Entity
 {
 	protected EntityMouse(EntityType<? extends EntityMouse> pEntityType, Level pLevel)
 	{
@@ -29,19 +28,19 @@ public class EntityMouse extends LivingEntity
 	}
 
 	@Override
-	public Iterable<ItemStack> getArmorSlots()
+	protected void defineSynchedData()
 	{
-		return null;
+
 	}
 
 	@Override
-	public ItemStack getItemBySlot(EquipmentSlot pSlot)
+	protected void readAdditionalSaveData(CompoundTag pCompound)
 	{
-		return null;
+
 	}
 
 	@Override
-	public void setItemSlot(EquipmentSlot pSlot, ItemStack pStack)
+	protected void addAdditionalSaveData(CompoundTag pCompound)
 	{
 
 	}
@@ -67,13 +66,7 @@ public class EntityMouse extends LivingEntity
 			}
 		}
 
-		super.tick();
-	}
-
-	@Override
-	public HumanoidArm getMainArm()
-	{
-		return null;
+//		super.tick();
 	}
 
 	private static Vector3f getParticleColor(int targetConc)
