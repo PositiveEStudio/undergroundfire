@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
+    "particle": "minecraft:block/stone",
     "down": "undergroundfire:block/test/down",
     "east": "undergroundfire:block/test/east",
     "north": "undergroundfire:block/test/north",

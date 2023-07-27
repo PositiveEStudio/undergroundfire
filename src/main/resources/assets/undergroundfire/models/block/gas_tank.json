@@ -1,7 +1,8 @@
 {
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "undergroundfire:block/gas_tank"
+		"0": "undergroundfire:block/gas_tank",
+		"particle": "undergroundfire:item/gas_tank"
 	},
 	"elements": [
 		{
