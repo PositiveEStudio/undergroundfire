@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlockEntityGasCoalExtractor extends BlockEntity
 {
-	int gasCoal = 0;
+	protected int gasCoal = 0;
 
 	public BlockEntityGasCoalExtractor(BlockPos pPos, BlockState pBlockState)
 	{

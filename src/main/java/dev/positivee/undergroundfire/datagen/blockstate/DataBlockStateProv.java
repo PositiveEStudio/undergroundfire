@@ -16,7 +16,7 @@ public class DataBlockStateProv extends BlockStateProvider
 	protected void registerStatesAndModels()
 	{
 		this.simpleBlock(BlockRegistry.RICH_COAL_ORE.get());
-		this.simpleBlock(BlockRegistry.BURNING_RICH_COAL_ORE.get());
+//		this.simpleBlock(BlockRegistry.BURNING_RICH_COAL_ORE.get());
 //		this.simpleBlock(BlockRegistry.GAS_COAL_EXTRACTOR.get());
 //		this.simpleBlock(BlockRegistry.GAS_TANK.get());
 	}
