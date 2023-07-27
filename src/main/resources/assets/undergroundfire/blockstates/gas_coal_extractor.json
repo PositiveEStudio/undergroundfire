@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "undergroundfire:block/gas_coal_extractor",
+    "facing=east,tank=false": {
+      "model": "undergroundfire:block/gas_coal_extractor_none",
       "y": 90
     },
-    "facing=north": {
-      "model": "undergroundfire:block/gas_coal_extractor"
+    "facing=north,tank=false": {
+      "model": "undergroundfire:block/gas_coal_extractor_none"
     },
-    "facing=south": {
-      "model": "undergroundfire:block/gas_coal_extractor",
+    "facing=south,tank=false": {
+      "model": "undergroundfire:block/gas_coal_extractor_none",
       "y": 180
     },
-    "facing=west": {
-      "model": "undergroundfire:block/gas_coal_extractor",
+    "facing=west,tank=false": {
+      "model": "undergroundfire:block/gas_coal_extractor_none",
+      "y": 270
+    },
+    "facing=east,tank=true": {
+      "model": "undergroundfire:block/gas_coal_extractor_on",
+      "y": 90
+    },
+    "facing=north,tank=true": {
+      "model": "undergroundfire:block/gas_coal_extractor_on"
+    },
+    "facing=south,tank=true": {
+      "model": "undergroundfire:block/gas_coal_extractor_on",
+      "y": 180
+    },
+    "facing=west,tank=true": {
+      "model": "undergroundfire:block/gas_coal_extractor_on",
       "y": 270
     }
   }

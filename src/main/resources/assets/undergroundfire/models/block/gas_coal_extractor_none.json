@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraft:block/stone",
+    "down": "undergroundfire:block/gas_coal_extractor_side",
+    "east": "undergroundfire:block/gas_coal_extractor_side",
+    "north": "undergroundfire:block/gas_coal_extractor_none",
+    "south": "undergroundfire:block/gas_coal_extractor_back",
+    "up": "undergroundfire:block/gas_coal_extractor_side",
+    "west": "undergroundfire:block/gas_coal_extractor_side"
+  }
+}
