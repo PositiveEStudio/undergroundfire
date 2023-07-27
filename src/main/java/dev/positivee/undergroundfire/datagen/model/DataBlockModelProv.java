@@ -21,13 +21,12 @@ public class DataBlockModelProv extends BlockModelProvider
 				new ResourceLocation(UndergroundFire.MODID, "block/rich_coal_ore"));
 		this.cubeAll("burning_rich_coal_ore",
 				new ResourceLocation(UndergroundFire.MODID, "block/burning_rich_coal_ore"));
-		this.cube("coal_gas_extractor",
+		this.cube("gas_coal_extractor",
 				new ResourceLocation(UndergroundFire.MODID, "block/test/down"),
 				new ResourceLocation(UndergroundFire.MODID, "block/test/up"),
 				new ResourceLocation(UndergroundFire.MODID, "block/test/north"),
 				new ResourceLocation(UndergroundFire.MODID, "block/test/south"),
 				new ResourceLocation(UndergroundFire.MODID, "block/test/east"),
 				new ResourceLocation(UndergroundFire.MODID, "block/test/west"));
-
 	}
 }
