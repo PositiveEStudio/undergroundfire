@@ -7,9 +7,6 @@ import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -20,11 +17,6 @@ public class EntityMouse extends Entity
 	protected EntityMouse(EntityType<? extends EntityMouse> pEntityType, Level pLevel)
 	{
 		super(pEntityType, pLevel);
-	}
-
-	public static AttributeSupplier.Builder createAttributes()
-	{
-		return LivingEntity.createLivingAttributes().add(Attributes.MAX_HEALTH, 1.0D);
 	}
 
 	@Override
