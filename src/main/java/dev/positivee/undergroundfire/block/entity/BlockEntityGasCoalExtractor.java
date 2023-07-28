@@ -2,7 +2,6 @@ package dev.positivee.undergroundfire.block.entity;
 
 import dev.positivee.undergroundfire.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +16,11 @@ import static dev.positivee.undergroundfire.block.BlockGasCoalExtractor.FACING;
 public class BlockEntityGasCoalExtractor extends BlockEntity
 {
 	protected int gasCoal = 0;
+	int dx;
+	int dz;
+	//means diraction in X Z
+	//x+ is east
+	//z+ is south
 
 	public BlockEntityGasCoalExtractor(BlockPos pPos, BlockState pBlockState)
 	{
@@ -26,7 +30,32 @@ public class BlockEntityGasCoalExtractor extends BlockEntity
 	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityGasCoalExtractor blockEntity)
 	{
 		ArrayList<BlockPos> targetPos = new ArrayList<>();
-		Direction direction = state.getValue(FACING);
+		int direction = state.getValue(FACING).get2DDataValue();
+
+		switch (direction)
+		{
+			case 2://north
+			{
+				blockEntity.setDxDz(-1, 1);
+				break;
+			}
+			case 0://south
+			{
+				blockEntity.setDxDz(1, -1);
+				break;
+			}
+			case 1://west
+			{
+				blockEntity.setDxDz(-1, -1);
+				break;
+			}
+			case 3://east
+			{
+				blockEntity.setDxDz(1, 1);
+				break;
+			}
+		}
+
 
 		for (int i = -1; i <= 1; i++)
 		{
@@ -100,5 +129,11 @@ public class BlockEntityGasCoalExtractor extends BlockEntity
 	public int getGasCoal()
 	{
 		return this.gasCoal;
+	}
+
+	public void setDxDz(int dx, int dz)
+	{
+		this.dx = dx;
+		this.dz = dz;
 	}
 }
