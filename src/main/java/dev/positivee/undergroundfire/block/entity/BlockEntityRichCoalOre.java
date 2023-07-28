@@ -24,7 +24,7 @@ public class BlockEntityRichCoalOre extends BlockEntity
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityRichCoalOre blockEntity)
 	{
-		if (CheckBlock.RichCoalOreFuns.CheckAroundFireBlock(level, pos))
+		if (CheckBlock.CheckAroundFireBlock(level, pos))
 			blockEntity.burnTime++;
 		if (blockEntity.getBurnTime() > blockEntity.getToBurnTime() && !level.isClientSide())
 			level.setBlock(pos, BlockRegistry.BURNING_RICH_COAL_ORE.get().defaultBlockState(), 2);
