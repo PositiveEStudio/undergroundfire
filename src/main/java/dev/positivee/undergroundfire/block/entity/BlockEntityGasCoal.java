@@ -2,6 +2,7 @@ package dev.positivee.undergroundfire.block.entity;
 
 import dev.positivee.undergroundfire.block.BlockGasCoal;
 import dev.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.common.Constants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class BlockEntityGasCoal extends BlockEntity
 {
@@ -50,8 +52,6 @@ public class BlockEntityGasCoal extends BlockEntity
 					if (block.equals(Blocks.AIR) || block.equals(BlockRegistry.GAS_COAL.get()))
 					{
 						targetPos.add(newPos);
-//						if (level.isClientSide)
-//							level.addParticle(DustParticleOptions.REDSTONE, true, newPos.getX(), newPos.getY(), newPos.getZ(), 0.0D, 0.0D, 0.0D);
 					}
 				}
 			}
@@ -62,7 +62,6 @@ public class BlockEntityGasCoal extends BlockEntity
 
 		if (!targetPos.isEmpty())
 		{
-//			Random random = new Random(pos.asLong() + state.getSeed(pos));
 			int index;
 
 			if (targetPos.size() == 1)
@@ -81,22 +80,19 @@ public class BlockEntityGasCoal extends BlockEntity
 				}
 				else
 				{
-//					if (targetBlock.equals(Blocks.AIR) && concentration > airCount * 0.8F)
 					if (targetBlock.equals(Blocks.AIR))
 					{
 						level.setBlock(targetPos.get(index), BlockRegistry.GAS_COAL.get().defaultBlockState().setValue(BlockGasCoal.CONCENTRATION, 1), 2);
-						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, (concentration >= 1) ? (concentration - 1) : 0), 2);
+						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, (concentration > Constants.CONC_MIN) ? (concentration - 1) : 0), 2);
 					}
 
-
-//					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && concentration - targetState.getValue(BlockGasCoal.CONCENTRATION) > 1)
-					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && targetState.getValue(BlockGasCoal.CONCENTRATION) <= 99 && concentration > targetState.getValue(BlockGasCoal.CONCENTRATION))
+					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && targetState.getValue(BlockGasCoal.CONCENTRATION) < Constants.CONC_MAX && concentration > targetState.getValue(BlockGasCoal.CONCENTRATION))
 					{
 						int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
 
 						level.setBlock(targetPos.get(index), targetState.setValue(BlockGasCoal.CONCENTRATION, targetConcentration + 1), 2);
 						level.getBlockEntity(targetPos.get(index), BlockEntityRegistry.GAS_COAL.get()).get().isDelay();
-						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, (concentration >= 1) ? (concentration - 1) : 0), 2);
+						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, (concentration > Constants.CONC_MIN) ? (concentration - 1) : 0), 2);
 					}
 				}
 			}

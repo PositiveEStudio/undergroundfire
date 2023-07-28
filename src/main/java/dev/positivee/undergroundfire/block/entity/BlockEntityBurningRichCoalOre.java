@@ -3,6 +3,7 @@ package dev.positivee.undergroundfire.block.entity;
 import dev.positivee.undergroundfire.block.BlockBurningRichCoalOre;
 import dev.positivee.undergroundfire.block.BlockGasCoal;
 import dev.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.common.Constants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
@@ -58,8 +59,6 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 
 			if (!targetPos.isEmpty())
 			{
-//				Random random = new Random(pos.asLong() + state.getSeed(pos));
-
 				int index;
 
 				if (targetPos.size() == 1)
@@ -78,7 +77,7 @@ public class BlockEntityBurningRichCoalOre extends BlockEntity
 						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockBurningRichCoalOre.OUTPUTS, outputs - 1), 2);
 					}
 
-					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && targetState.getValue(BlockGasCoal.CONCENTRATION) <= 99)
+					if (targetBlock.equals(BlockRegistry.GAS_COAL.get()) && targetState.getValue(BlockGasCoal.CONCENTRATION) < Constants.CONC_MAX)
 					{
 						int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
 
