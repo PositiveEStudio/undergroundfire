@@ -9,8 +9,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import org.joml.Vector3f;
+
+import static dev.positivee.undergroundfire.common.GetGYRColor.getParticleColor;
 
 public class EntityMouse extends Entity
 {
@@ -58,25 +58,6 @@ public class EntityMouse extends Entity
 			}
 		}
 
-//		super.tick();
-	}
-
-	private static Vector3f getParticleColor(int targetConc)
-	{
-		int red, green;
-		String color_s;
-		if (((double) targetConc / 50.0D) < 1.0D)
-		{
-			red = (int) (255 * ((double) targetConc / 50.0D));
-			green = 255 - red;
-			color_s = Integer.toHexString(red) + Integer.toHexString(green) + "00";
-		}
-		else
-		{
-			color_s = "ff0000";
-		}
-
-		int color = Integer.valueOf(color_s, 16);
-		return Vec3.fromRGB24(color).toVector3f();
+		super.tick();
 	}
 }
