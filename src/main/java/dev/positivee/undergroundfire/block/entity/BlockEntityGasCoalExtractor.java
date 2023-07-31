@@ -1,13 +1,16 @@
 package dev.positivee.undergroundfire.block.entity;
 
+import com.mojang.logging.LogUtils;
+import dev.positivee.undergroundfire.block.BlockGasCoal;
 import dev.positivee.undergroundfire.block.BlockRegistry;
+import dev.positivee.undergroundfire.common.Constants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 
@@ -15,81 +18,89 @@ import static dev.positivee.undergroundfire.block.BlockGasCoalExtractor.FACING;
 
 public class BlockEntityGasCoalExtractor extends BlockEntity
 {
-	protected int gasCoal = 0;
-	int dx;
-	int dz;
-	//means diraction in X Z
-	//x+ is east
-	//z+ is south
+	private int gasCoal = 0;
 
 	public BlockEntityGasCoalExtractor(BlockPos pPos, BlockState pBlockState)
 	{
 		super(BlockEntityRegistry.GAS_COAL_EXTRACTOR.get(), pPos, pBlockState);
 	}
 
-	public static void tick(Level level, BlockPos pos, BlockState state, BlockEntityGasCoalExtractor blockEntity)
+	public static void tick(Level pLevel, BlockPos pPos, BlockState pState, BlockEntityGasCoalExtractor blockEntity)
 	{
-		ArrayList<BlockPos> targetPos = new ArrayList<>();
-		int direction = state.getValue(FACING).get2DDataValue();
+		Logger logger = LogUtils.getLogger();
+		int direction = blockEntity.getBlockState().getValue(FACING).get2DDataValue();
+		int[] dxyz1, dxyz2;
+		dxyz1 = new int[3];
+		dxyz2 = new int[3];
+
+		//(x,y,z)
+		//facing west (1,-3,-3)->(7,3,3)
+		//facing east (-1,3,3)->(-7,-3,-3)
+		//facing north (3,3,7)->(-3,-3,1)
+		//facing south (3,3,-1)->(-3,-3,-7)
 
 		switch (direction)
 		{
-			case 2://north
-			{
-				blockEntity.setDxDz(-1, 1);
-				break;
-			}
 			case 0://south
 			{
-				blockEntity.setDxDz(1, -1);
+				dxyz1 = new int[]{3, 3, -1};
+				dxyz2 = new int[]{-3, -3, -7};
 				break;
 			}
 			case 1://west
 			{
-				blockEntity.setDxDz(-1, -1);
+				dxyz1 = new int[]{1, -3, -3};
+				dxyz2 = new int[]{7, 3, 3};
+				break;
+			}
+			case 2://north
+			{
+				dxyz1 = new int[]{3, 3, 7};
+				dxyz2 = new int[]{-3, -3, 1};
 				break;
 			}
 			case 3://east
 			{
-				blockEntity.setDxDz(1, 1);
+				dxyz1 = new int[]{-1, 3, 3};
+				dxyz2 = new int[]{-7, -3, -3};
 				break;
 			}
 		}
 
+		BlockPos start = new BlockPos(pPos.getX() + dxyz1[0], pPos.getY() + dxyz1[1], pPos.getZ() + dxyz1[2]);
+		BlockPos end = new BlockPos(pPos.getX() + dxyz2[0], pPos.getY() + dxyz2[1], pPos.getZ() + dxyz2[2]);
+		ArrayList<BlockPos> targetPosS = new ArrayList<>();
 
-		for (int i = -1; i <= 1; i++)
+		for (BlockPos nextPos : BlockPos.betweenClosed(start, end))
 		{
-			for (int j = -1; j <= 1; j++)
+			if (pLevel.getBlockState(nextPos).is(BlockRegistry.GAS_COAL.get()))
 			{
-				for (int k = -1; k <= 1; k++)
-				{
-					if (i == 0 && j == 0 && k == 0) continue;
-
-					BlockPos newPos = new BlockPos(pos.getX() + i, pos.getY() + j, pos.getZ() + k);
-					Block block = level.getBlockState(newPos).getBlock();
-					if (block.equals(BlockRegistry.GAS_COAL.get()))
-					{
-						targetPos.add(newPos);
-					}
-				}
+				targetPosS.add(new BlockPos(nextPos.getX(), nextPos.getY(), nextPos.getZ()));
 			}
 		}
 
-		if (!targetPos.isEmpty())
+		if (!targetPosS.isEmpty())
 		{
 			int index;
-
-			if (targetPos.size() == 1)
+			if (targetPosS.size() == 1)
 				index = 0;
 			else
-				index = level.random.nextInt(0, targetPos.size() - 1);
+				index = pLevel.random.nextInt(0, targetPosS.size() - 1);
 
-			BlockState targetState = level.getBlockState(targetPos.get(index));
-			Block targetBlock = targetState.getBlock();
+			BlockPos targetPos = targetPosS.get(index);
+			BlockState targetState = pLevel.getBlockState(targetPos);
 
-			if (!level.isClientSide)
+			if (!pLevel.isClientSide)
 			{
+				logger.info("checking block" + targetState.getBlock().toString());
 
+				int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
+
+				pLevel.setBlockAndUpdate(targetPos, BlockRegistry.GAS_COAL.get().defaultBlockState()
+						.setValue(BlockGasCoal.CONCENTRATION, (targetConcentration > Constants.CONC_MIN) ?
+								(targetConcentration - 1) : 0));
+				pLevel.getBlockEntity(targetPos, BlockEntityRegistry.GAS_COAL.get()).get().isDelay();
+				blockEntity.increaseGasCoal();
 			}
 		}
 	}
@@ -131,9 +142,18 @@ public class BlockEntityGasCoalExtractor extends BlockEntity
 		return this.gasCoal;
 	}
 
-	public void setDxDz(int dx, int dz)
+	public void increaseGasCoal()
 	{
-		this.dx = dx;
-		this.dz = dz;
+		this.gasCoal++;
+	}
+
+	public void decreaseGasCoal()
+	{
+		this.gasCoal--;
+	}
+
+	public void decreaseGasCoal(int decrease)
+	{
+		this.gasCoal -= decrease;
 	}
 }

@@ -2,8 +2,10 @@ package dev.positivee.undergroundfire.block;
 
 import dev.positivee.undergroundfire.block.entity.BlockEntityGasCoalExtractor;
 import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
+import dev.positivee.undergroundfire.common.Constants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +25,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class BlockGasCoalExtractor extends BaseEntityBlock
 {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -37,10 +42,13 @@ public class BlockGasCoalExtractor extends BaseEntityBlock
 	@Override
 	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit)
 	{
-//		int gasCoal = pLevel.getBlockEntity(pPos, BlockEntityRegistry.GAS_COAL_EXTRACTOR.get()).get().getGasCoal();
-//		pPlayer.sendSystemMessage(Component.translatable(String.valueOf(gasCoal)));
+		BlockEntityGasCoalExtractor blockentity = pLevel.getBlockEntity(pPos, BlockEntityRegistry.GAS_COAL_EXTRACTOR.get()).get();
+		if (!pLevel.isClientSide)
+			pPlayer.sendSystemMessage(Component.translatable("the gascoal is " + String.valueOf(blockentity.getGasCoal())));
 
-		return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+		return InteractionResult.sidedSuccess(pLevel.isClientSide);
+
+//		return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
 	}
 
 	@Nullable
