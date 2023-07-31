@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "undergroundfire:rich_coal_ore"
+    "undergroundfire:rich_coal_ore",
+    "undergroundfire:burning_rich_coal_ore",
   ]
 }
