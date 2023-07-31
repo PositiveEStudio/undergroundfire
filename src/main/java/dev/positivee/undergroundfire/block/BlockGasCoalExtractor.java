@@ -2,12 +2,14 @@ package dev.positivee.undergroundfire.block;
 
 import dev.positivee.undergroundfire.block.entity.BlockEntityGasCoalExtractor;
 import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
-import dev.positivee.undergroundfire.common.Constants;
+import dev.positivee.undergroundfire.gui.menu.MenuGasCoalExtractor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -25,13 +27,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class BlockGasCoalExtractor extends BaseEntityBlock
 {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty TANK = BooleanProperty.create("tank");
+	private static final Component TITLE = Component.translatable("title.extractor");
 
 	public BlockGasCoalExtractor()
 	{
@@ -49,6 +49,14 @@ public class BlockGasCoalExtractor extends BaseEntityBlock
 		return InteractionResult.sidedSuccess(pLevel.isClientSide);
 
 //		return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+	}
+
+	@Nullable
+	@Override
+	public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos)
+	{
+		return new SimpleMenuProvider((pContainerId, playerInv, player) ->
+				new MenuGasCoalExtractor(pContainerId, playerInv), TITLE);
 	}
 
 	@Nullable

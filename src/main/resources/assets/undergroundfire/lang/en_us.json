@@ -6,5 +6,6 @@
   "block.undergroundfire.rich_coal_ore": "Rich Coal Ore",
   "entity.undergroundfire.mouse": "Mouse",
   "item.undergroundfire.mouse": "Mouse",
-  "itemGroup.undergroundfire": "Underground Fire"
+  "itemGroup.undergroundfire": "Underground Fire",
+  "title.extractor": "Gas Coal Extractor"
 }

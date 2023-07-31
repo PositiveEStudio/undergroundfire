@@ -6,5 +6,6 @@
   "block.undergroundfire.rich_coal_ore": "富煤矿",
   "entity.undergroundfire.mouse": "耗子",
   "item.undergroundfire.mouse": "耗子",
-  "itemGroup.undergroundfire": "地火"
+  "itemGroup.undergroundfire": "地火",
+  "title.extractor": "气化煤提取器"
 }
