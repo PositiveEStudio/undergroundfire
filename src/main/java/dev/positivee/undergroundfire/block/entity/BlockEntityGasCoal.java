@@ -13,11 +13,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class BlockEntityGasCoal extends BlockEntity
 {
-	protected boolean delay = true;
+	protected int delay = 5;
 
 	public BlockEntityGasCoal(BlockPos pPos, BlockState pBlockState)
 	{
@@ -28,14 +27,14 @@ public class BlockEntityGasCoal extends BlockEntity
 	{
 		ArrayList<BlockPos> targetPos = new ArrayList<>();
 		int airCount = 0;
-		int concentration = blockEntity.getBlockState().getValue(BlockGasCoal.CONCENTRATION);
+		int concentration = state.getValue(BlockGasCoal.CONCENTRATION);
 
 		if (concentration == 0)
 			level.removeBlock(pos, false);
 
-		if (blockEntity.delay)
+		if (blockEntity.delay != 0)
 		{
-			blockEntity.notDelay();
+			blockEntity.delayTick();
 			return;
 		}
 
@@ -52,13 +51,14 @@ public class BlockEntityGasCoal extends BlockEntity
 					if (block.equals(Blocks.AIR) || block.equals(BlockRegistry.GAS_COAL.get()))
 					{
 						targetPos.add(newPos);
+						if (block.equals(Blocks.AIR))
+						{
+							airCount++;
+						}
 					}
 				}
 			}
 		}
-
-		for (int i = 0; i < targetPos.size() - 1; i++)
-			airCount++;
 
 		if (!targetPos.isEmpty())
 		{
@@ -80,7 +80,7 @@ public class BlockEntityGasCoal extends BlockEntity
 				}
 				else
 				{
-					if (targetBlock.equals(Blocks.AIR))
+					if (targetBlock.equals(Blocks.AIR) && (concentration > (airCount / 4)))
 					{
 						level.setBlock(targetPos.get(index), BlockRegistry.GAS_COAL.get().defaultBlockState().setValue(BlockGasCoal.CONCENTRATION, 1), 2);
 						level.setBlock(pos, blockEntity.getBlockState().setValue(BlockGasCoal.CONCENTRATION, (concentration > Constants.CONC_MIN) ? (concentration - 1) : 0), 2);
@@ -103,14 +103,14 @@ public class BlockEntityGasCoal extends BlockEntity
 	protected void saveAdditional(CompoundTag pTag)
 	{
 		super.saveAdditional(pTag);
-		pTag.putBoolean("Delay", this.delay);
+		pTag.putInt("Delay", this.delay);
 	}
 
 	@Override
 	public void load(CompoundTag pTag)
 	{
 		super.load(pTag);
-		this.delay = pTag.getBoolean("Delay");
+		this.delay = pTag.getInt("Delay");
 	}
 
 	@NotNull
@@ -119,7 +119,7 @@ public class BlockEntityGasCoal extends BlockEntity
 	{
 		// Server side, read NBT when updating chunk data
 		CompoundTag nbt = super.getUpdateTag();
-		nbt.putBoolean("Delay", this.delay);
+		nbt.putInt("Delay", this.delay);
 		return nbt;
 	}
 
@@ -128,16 +128,16 @@ public class BlockEntityGasCoal extends BlockEntity
 	{
 		// Client side, read NBT when updating chunk data
 		super.load(tag);
-		this.delay = tag.getBoolean("Delay");
+		this.delay = tag.getInt("Delay");
 	}
 
 	public void isDelay()
 	{
-		this.delay = true;
+		this.delay = 5;
 	}
 
-	public void notDelay()
+	public void delayTick()
 	{
-		this.delay = false;
+		this.delay--;
 	}
 }

@@ -27,7 +27,6 @@ public class BlockEntityGasCoalExtractor extends BlockEntity
 
 	public static void tick(Level pLevel, BlockPos pPos, BlockState pState, BlockEntityGasCoalExtractor blockEntity)
 	{
-		Logger logger = LogUtils.getLogger();
 		int direction = blockEntity.getBlockState().getValue(FACING).get2DDataValue();
 		int[] dxyz1, dxyz2;
 		dxyz1 = new int[3];
@@ -92,8 +91,6 @@ public class BlockEntityGasCoalExtractor extends BlockEntity
 
 			if (!pLevel.isClientSide)
 			{
-				logger.info("checking block" + targetState.getBlock().toString());
-
 				int targetConcentration = targetState.getValue(BlockGasCoal.CONCENTRATION);
 
 				pLevel.setBlockAndUpdate(targetPos, BlockRegistry.GAS_COAL.get().defaultBlockState()
