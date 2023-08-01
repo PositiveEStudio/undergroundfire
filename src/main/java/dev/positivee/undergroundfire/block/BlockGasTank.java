@@ -30,7 +30,7 @@ import java.util.List;
 
 public class BlockGasTank extends Block
 {
-	public static final IntegerProperty TOLERANCE = IntegerProperty.create("tolerance", 0, 3);
+	public static final IntegerProperty TOLERANCE = IntegerProperty.create("tolerance", 0, 10);
 	private static VoxelShape shape;
 
 	static
