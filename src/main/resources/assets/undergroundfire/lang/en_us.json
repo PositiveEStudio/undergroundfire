@@ -7,5 +7,8 @@
   "entity.undergroundfire.mouse": "Mouse",
   "item.undergroundfire.mouse": "Mouse",
   "itemGroup.undergroundfire": "Underground Fire",
-  "title.extractor": "Gas Coal Extractor"
+  "title.extractor": "Gas Coal Extractor",
+  "block.undergroundfire.gas_coal.tolerance": "Tolerance is %d",
+  "block.undergroundfire.gas_coal_extractor.get_no_gas_tank": "The gas coal tolerance is %d",
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank": "Fill up with gas"
 }

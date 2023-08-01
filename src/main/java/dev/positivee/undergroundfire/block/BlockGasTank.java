@@ -1,12 +1,15 @@
 package dev.positivee.undergroundfire.block;
 
 import dev.positivee.undergroundfire.item.ItemRegistry;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -45,6 +48,22 @@ public class BlockGasTank extends Block
 	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit)
 	{//TODO:在冒烟位置生成实体释放粒子效果，并发出点燃的声音，延时一定时间后爆炸，根据 tolerance 值去设定爆炸等级，tolerance 值为 0 时不触发
 		return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag)
+	{
+		if(pStack.getOrCreateTag().contains("tolerance"))
+		{
+			pTooltip.add(Component.translatable("block.undergroundfire.gas_coal.tolerance",
+					pStack.getTag().get("tolerance")).withStyle(ChatFormatting.BLUE));
+		}
+		else
+		{
+			pStack.getOrCreateTag().putInt("tolerance", 0);
+			pTooltip.add(Component.translatable("block.undergroundfire.gas_coal.tolerance",
+					pStack.getTag().get("tolerance")).withStyle(ChatFormatting.BLUE));
+		}
 	}
 
 	@Override
