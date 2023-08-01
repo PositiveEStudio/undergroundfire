@@ -8,7 +8,9 @@
   "item.undergroundfire.mouse": "Mouse",
   "itemGroup.undergroundfire": "Underground Fire",
   "title.extractor": "Gas Coal Extractor",
-  "block.undergroundfire.gas_coal.tolerance": "Tolerance is %d",
+  "block.undergroundfire.gas_coal.tolerance": "Tolerance: %d/10",
   "block.undergroundfire.gas_coal_extractor.get_no_gas_tank": "The gas coal tolerance is %d",
-  "block.undergroundfire.gas_coal_extractor.get_gas_tank": "Fill up with gas"
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank": "Fill up with gas successfully.",
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank_full": "The Tank is already full fo gas.",
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank_empty": "There is no more gas in extractor."
 }

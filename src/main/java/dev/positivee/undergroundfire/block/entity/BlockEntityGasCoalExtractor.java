@@ -146,7 +146,15 @@ public class BlockEntityGasCoalExtractor extends BlockEntity
 
 	public void decreaseGasCoal()
 	{
-		this.gasCoal--;
+		if (this.gasCoal > 0)
+		{
+			this.gasCoal--;
+		}
+		else
+		{
+			Logger logger = LogUtils.getLogger();
+			logger.warn("the " + this.getBlockState().getBlock().toString() + " in " + this.getBlockPos().toString() + " is tried to be below 0");
+		}
 	}
 
 	public void decreaseGasCoal(int decrease)

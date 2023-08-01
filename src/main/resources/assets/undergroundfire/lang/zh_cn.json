@@ -7,5 +7,10 @@
   "entity.undergroundfire.mouse": "耗子",
   "item.undergroundfire.mouse": "耗子",
   "itemGroup.undergroundfire": "地火",
-  "title.extractor": "气化煤提取器"
+  "title.extractor": "气化煤提取器",
+  "block.undergroundfire.gas_coal.tolerance": "气量: %d/10",
+  "block.undergroundfire.gas_coal_extractor.get_no_gas_tank": "气化煤储量: %d",
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank": "加气成功",
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank_full": "煤气罐已经储满气体了",
+  "block.undergroundfire.gas_coal_extractor.get_gas_tank_empty": "提取器已经没有气化煤了"
 }

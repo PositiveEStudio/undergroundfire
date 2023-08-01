@@ -4,6 +4,7 @@ import dev.positivee.undergroundfire.block.entity.BlockEntityGasCoalExtractor;
 import dev.positivee.undergroundfire.block.entity.BlockEntityRegistry;
 import dev.positivee.undergroundfire.gui.menu.MenuGasCoalExtractor;
 import dev.positivee.undergroundfire.item.ItemRegistry;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -48,7 +49,27 @@ public class BlockGasCoalExtractor extends BaseEntityBlock
 		if (item.is(ItemRegistry.GAS_TANK.get()))
 		{
 			if (!pLevel.isClientSide)
-				pPlayer.sendSystemMessage(Component.translatable("block.undergroundfire.gas_coal_extractor.get_gas_tank"));
+			{
+				int tol = item.getOrCreateTag().getInt("tolerance");
+				int ext_tol = pLevel.getBlockEntity(pPos, BlockEntityRegistry.GAS_COAL_EXTRACTOR.get()).get().getGasCoal();
+				if (tol < 10)
+				{
+					if(ext_tol > 0)
+					{
+						pPlayer.sendSystemMessage(Component.translatable("block.undergroundfire.gas_coal_extractor.get_gas_tank"));
+						pLevel.getBlockEntity(pPos, BlockEntityRegistry.GAS_COAL_EXTRACTOR.get()).get().decreaseGasCoal();
+						item.getOrCreateTag().putInt("tolerance", tol + 1);
+					}
+					else
+					{
+						pPlayer.sendSystemMessage(Component.translatable("block.undergroundfire.gas_coal_extractor.get_gas_tank_empty").withStyle(ChatFormatting.RED));
+					}
+				}
+				else
+				{
+					pPlayer.sendSystemMessage(Component.translatable("block.undergroundfire.gas_coal_extractor.get_gas_tank_full").withStyle(ChatFormatting.RED));
+				}
+			}
 			return InteractionResult.sidedSuccess(pLevel.isClientSide);
 		}
 		else
